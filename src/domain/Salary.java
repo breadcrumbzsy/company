@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Salary {
 	private int sid;
 	private int eid;
+	private String name;
 	private int year_;
 	private int month_;
 	private double basic;
@@ -59,12 +60,22 @@ public class Salary {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
-		return "Salary [sid=" + sid + ", eid=" + eid + ", year_=" + year_
-				+ ", month_=" + month_ + ", basic=" + basic + ", bonus=" + bonus
-				+ ", penalty=" + penalty + ", total=" + total + "]";
+		return "Salary [sid=" + sid + ", eid=" + eid + ", name=" + name
+				+ ", year_=" + year_ + ", month_=" + month_ + ", basic="
+				+ basic + ", bonus=" + bonus + ", penalty=" + penalty
+				+ ", total=" + total + "]";
 	}
+
 
 
 }

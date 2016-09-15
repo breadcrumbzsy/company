@@ -22,6 +22,8 @@ public class AttendanceService {
 	}
 	
 	public int addDay(String department,Date day_){
+		if(ad.findByDay(day_, department).size()>0)
+			return 2;
 		return ad.addDay(department, day_);
 	}
 	public List<Attendance> findByEidAndMonth(int eid,int year,int month){

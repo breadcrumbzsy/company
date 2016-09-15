@@ -12,6 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/css.css" type="text/css" rel="stylesheet" />
 <link href="css/main.css" type="text/css" rel="stylesheet" />
 <link rel="shortcut icon" href="images/main/favicon.ico" />
+<script type="text/javascript" src="../js/salary.js"></script>
+<script src="../js/jquery.js"></script>
 <style>
 body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
 #searchmain{ font-size:12px;}
@@ -48,13 +50,13 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
                <span>选择月份查询部员工资详情：</span>
-               <input type="text" name="" value="" class="text-word"><span> 年</span>
-               <input type="text" name="" value="" class="text-word"><span> 月</span>
-	         <input name="" type="button" value="查询" class="text-but">
+               <input type="text" name="" value="" class="text-word" id="year"><span> 年</span>
+               <input type="text" name="" value="" class="text-word" id="month"><span> 月</span>
+	         <input name="" type="button" value="查询" class="text-but" onclick="getSalaryListByMonth('${sessionScope.employee.getDepartment() }')" >
 
                <span>|    填写部员编号查询工资详情：</span>
-              <input type="text" name="" value="" class="text-word">
-               <input name="" type="button" value="查询" class="text-but">
+              <input type="text" name="" value="" class="text-word" id="eid">
+               <input name="" type="button" value="查询" class="text-but" onclick="getSalaryListByEid('${sessionScope.employee.getDepartment() }')" >
 	         </form>
          </td>
           <!--<td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">设置部员奖金</a></td>-->
@@ -75,7 +77,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         <th align="center" valign="middle" class="borderright">罚金</th>
         <th align="center" valign="middle" class="borderright">总计</th>
       </tr>
-      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+<!--       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="center" valign="middle" class="borderright borderbottom">1</td>
         <td align="center" valign="middle" class="borderright borderbottom">张三</td>
         <td align="center" valign="middle" class="borderright borderbottom">组长</td>
@@ -102,7 +104,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         <td align="center" valign="middle" class="borderright borderbottom">200</td>
         <td align="center" valign="middle" class="borderright borderbottom">9800</td>
       </tr>
-
+ -->
     </table></td>
     </tr>
   <tr>

@@ -49,8 +49,8 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
   		<tr>
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
-               <span>日期：</span><input type="text" name="" value="" class="text-word">
-	         <input name="" type="button" value="生成" class="text-but">
+               <span>日期：</span><input type="text" name="" value="" class="text-word" id="day" >
+	         <input name="" type="button" value="生成" class="text-but" onclick="attendanceSetDaily('${sessionScope.employee.getDepartment() }')">
 	         </form>
          </td>
           <!--<td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">设置部员奖金</a></td>-->
@@ -63,7 +63,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
     
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
       <tr>
-        <th align="center" valign="middle" class="borderright">员工编号</th>
+        <th align="center" valign="middle" class="borderright">编号</th>
         <th align="center" valign="middle" class="borderright">姓名</th>
         <th align="center" valign="middle" class="borderright">日期</th>
         <th align="center" valign="middle" class="borderright">是否迟到</th>

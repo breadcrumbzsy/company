@@ -1,7 +1,9 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javassist.expr.NewArray;
 import dao.AttendanceDao;
 import dao.EmployeeDao;
 import dao.SalaryDao;
@@ -54,4 +56,23 @@ public class SalaryService {
 		return sd.findByEidAndYear(eid, year);
 	}
 	
+	public List<Salary> findByMonth(String department,int year,int month) {
+		return sd.findByMonth(department, year, month);
+	}
+	public List<Salary> findByEid(String department,int eid) {
+		return sd.findByEid(department, eid);
+	}
+	
+	public List<Employee> findSalaryUnset(String department,int year,int month) {
+		List<Employee> employeeList=ed.findByDepartment(department);
+		List<Employee> list=new ArrayList<Employee>();
+		for(int i=0;i<employeeList.size();i++){
+			Employee employee=employeeList.get(i);
+			List<Salary> salaries =sd.findByEidAndMonth(employee.getEid(), year, month);
+			if(salaries.size()==0||salaries==null){
+				list.add(employee);
+			}
+		}
+		return list;
+	}
 }

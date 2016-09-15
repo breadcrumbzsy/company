@@ -94,8 +94,8 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>SalaryListById</servlet-name>
-    <servlet-class>servlet.SalaryListById</servlet-class>
+    <servlet-name>SalaryListByEid</servlet-name>
+    <servlet-class>servlet.SalaryListByEid</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -193,6 +193,27 @@
     <servlet-name>AttendanceCountMonthly</servlet-name>
     <servlet-class>servlet.AttendanceCountMonthly</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListByMonth</servlet-name>
+    <servlet-class>servlet.SalaryListByMonth</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListUnset</servlet-name>
+    <servlet-class>servlet.SalaryListUnset</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryBonusSet</servlet-name>
+    <servlet-class>servlet.SalaryBonusSet</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -286,8 +307,8 @@
     <url-pattern>/servlet/EmployeeLogin</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>SalaryListById</servlet-name>
-    <url-pattern>/servlet/SalaryListById</url-pattern>
+    <servlet-name>SalaryListByEid</servlet-name>
+    <url-pattern>/servlet/SalaryListByEid</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>SalaryListByDepartment</servlet-name>
@@ -352,6 +373,18 @@
   <servlet-mapping>
     <servlet-name>AttendanceCountMonthly</servlet-name>
     <url-pattern>/servlet/AttendanceCountMonthly</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListByMonth</servlet-name>
+    <url-pattern>/servlet/SalaryListByMonth</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListUnset</servlet-name>
+    <url-pattern>/servlet/SalaryListUnset</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryBonusSet</servlet-name>
+    <url-pattern>/servlet/SalaryBonusSet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
