@@ -55,6 +55,7 @@ public class AttendanceRecordListSelf extends HttpServlet {
 		int year=Integer.valueOf(request.getParameter("year"));
 		int month=Integer.valueOf(request.getParameter("month"));
 		
+		
 		System.out.println(year+"年"+month+"月");
 		JSONArray array = new JSONArray();
 		List<Record> list = rs.findByEidAndMonth(eid,year,month);
