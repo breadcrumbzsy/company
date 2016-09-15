@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//WebRoot/ceshi.jsp=UTF-8
+encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/left.jsp=UTF-8
+encoding//WebRoot/login.jsp=UTF-8
+encoding//WebRoot/manager/attendanceList.jsp=UTF-8
+encoding//WebRoot/manager/attendanceRecordList.jsp=UTF-8
+encoding//WebRoot/manager/attendanceSetDaily.jsp=UTF-8
+encoding//WebRoot/manager/employeeAdd.jsp=UTF-8
+encoding//WebRoot/manager/employeeInfoList.jsp=UTF-8
+encoding//WebRoot/manager/employeeModify.jsp=UTF-8
+encoding//WebRoot/manager/salaryList.jsp=UTF-8
+encoding//WebRoot/manager/salarySet.jsp=UTF-8
+encoding//WebRoot/self/attendanceList.jsp=UTF-8
+encoding//WebRoot/self/attendanceRecordList.jsp=UTF-8
+encoding//WebRoot/self/employeeInfo.jsp=UTF-8
+encoding//WebRoot/self/employeePasswordSet.jsp=UTF-8

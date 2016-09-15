@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>company</display-name>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeAdd</servlet-name>
+    <servlet-class>servlet.EmployeeAdd</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryAdd</servlet-name>
+    <servlet-class>servlet.SalaryAdd</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RecordServlet</servlet-name>
+    <servlet-class>servlet.RecordServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceAdd</servlet-name>
+    <servlet-class>servlet.AttendanceAdd</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceSetAllowed</servlet-name>
+    <servlet-class>servlet.AttendanceSetAllowed</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeModify</servlet-name>
+    <servlet-class>servlet.EmployeeModify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmplyeeSkillModify</servlet-name>
+    <servlet-class>service.EmplyeeSkillModify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeSkillModify</servlet-name>
+    <servlet-class>servlet.EmployeeSkillModify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeSkillAdd</servlet-name>
+    <servlet-class>servlet.EmployeeSkillAdd</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeSkillDelete</servlet-name>
+    <servlet-class>servlet.EmployeeSkillDelete</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeTrainingAdd</servlet-name>
+    <servlet-class>servlet.EmployeeTrainingAdd</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeTrainingDelete</servlet-name>
+    <servlet-class>servlet.EmployeeTrainingDelete</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SslaryBasicModify</servlet-name>
+    <servlet-class>servlet.SslaryBasicModify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryBasicModify</servlet-name>
+    <servlet-class>servlet.SalaryBasicModify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeLogin</servlet-name>
+    <servlet-class>servlet.EmployeeLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListById</servlet-name>
+    <servlet-class>servlet.SalaryListById</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListByDepartment</servlet-name>
+    <servlet-class>servlet.SalaryListByDepartment</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeePasswordModify</servlet-name>
+    <servlet-class>servlet.EmployeePasswordModify</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceRecordListSelf</servlet-name>
+    <servlet-class>servlet.AttendanceRecordListSelf</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceListSelf</servlet-name>
+    <servlet-class>servlet.AttendanceListSelf</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListSelf</servlet-name>
+    <servlet-class>servlet.SalaryListSelf</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeList</servlet-name>
+    <servlet-class>servlet.EmployeeList</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeQuit</servlet-name>
+    <servlet-class>servlet.EmployeeQuit</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeDetail</servlet-name>
+    <servlet-class>servlet.EmployeeDetail</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeListByEid</servlet-name>
+    <servlet-class>servlet.EmployeeListByEid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeInfoByEid</servlet-name>
+    <servlet-class>servlet.EmployeeInfoByEid</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeInfoByName</servlet-name>
+    <servlet-class>servlet.EmployeeInfoByName</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceRecordListByDay</servlet-name>
+    <servlet-class>servlet.AttendanceRecordListByDay</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceRecordListByEid</servlet-name>
+    <servlet-class>servlet.AttendanceRecordListByEid</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>EmployeeAdd</servlet-name>
+    <url-pattern>/servlet/EmployeeAdd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryAdd</servlet-name>
+    <url-pattern>/servlet/SalaryAdd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RecordServlet</servlet-name>
+    <url-pattern>/servlet/RecordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceAdd</servlet-name>
+    <url-pattern>/servlet/AttendanceAdd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceSetAllowed</servlet-name>
+    <url-pattern>/servlet/AttendanceSetAllowed</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeModify</servlet-name>
+    <url-pattern>/servlet/EmployeeModify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmplyeeSkillModify</servlet-name>
+    <url-pattern>/servlet/EmplyeeSkillModify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeSkillModify</servlet-name>
+    <url-pattern>/servlet/EmployeeSkillModify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeSkillAdd</servlet-name>
+    <url-pattern>/servlet/EmployeeSkillAdd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeSkillDelete</servlet-name>
+    <url-pattern>/servlet/EmployeeSkillDelete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeTrainingAdd</servlet-name>
+    <url-pattern>/servlet/EmployeeTrainingAdd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeTrainingDelete</servlet-name>
+    <url-pattern>/servlet/EmployeeTrainingDelete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SslaryBasicModify</servlet-name>
+    <url-pattern>/servlet/SslaryBasicModify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryBasicModify</servlet-name>
+    <url-pattern>/servlet/SalaryBasicModify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeLogin</servlet-name>
+    <url-pattern>/servlet/EmployeeLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListById</servlet-name>
+    <url-pattern>/servlet/SalaryListById</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListByDepartment</servlet-name>
+    <url-pattern>/servlet/SalaryListByDepartment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeePasswordModify</servlet-name>
+    <url-pattern>/servlet/EmployeePasswordModify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceRecordListSelf</servlet-name>
+    <url-pattern>/servlet/AttendanceRecordListSelf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceListSelf</servlet-name>
+    <url-pattern>/servlet/AttendanceListSelf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListSelf</servlet-name>
+    <url-pattern>/servlet/SalaryListSelf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeList</servlet-name>
+    <url-pattern>/servlet/EmployeeList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeQuit</servlet-name>
+    <url-pattern>/servlet/EmployeeQuit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeDetail</servlet-name>
+    <url-pattern>/servlet/EmployeeDetail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeListByEid</servlet-name>
+    <url-pattern>/servlet/EmployeeListByEid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeInfoByEid</servlet-name>
+    <url-pattern>/servlet/EmployeeInfoByEid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeInfoByName</servlet-name>
+    <url-pattern>/servlet/EmployeeInfoByName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceRecordListByDay</servlet-name>
+    <url-pattern>/servlet/AttendanceRecordListByDay</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceRecordListByEid</servlet-name>
+    <url-pattern>/servlet/AttendanceRecordListByEid</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
