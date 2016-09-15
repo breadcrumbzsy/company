@@ -6,12 +6,14 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
 import domain.Attendance;
+import domain.AttendanceCount;
 import domain.Employee;
 import domain.Record;
 
@@ -122,6 +124,76 @@ public class AttendanceDao {
 					Attendance.class), new Object[] {yearmonth,eid});
 			System.out.println("attendanceList:"+attendanceList);
 			return attendanceList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Attendance> findByEid(int eid,String department) {
+		try {
+			//还要修改
+			String sql = "select * from attendance ,employee  where attendance.eid=employee.eid and employee.eid=? and department=? order by employee.eid";
+			List<Attendance> attendanceList = (List<Attendance>) this.qr.query(sql, new BeanListHandler<Attendance>(
+					Attendance.class), new Object[] {eid,department});
+			return attendanceList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public List<Attendance> findByDay(Date day,String department) {
+		try {
+			//还要修改
+			String sql = "select * from attendance ,employee  where attendance.eid=employee.eid and attendance.day=? and department=? order by employee.eid";
+			List<Attendance> attendanceList = (List<Attendance>) this.qr.query(sql, new BeanListHandler<Attendance>(
+					Attendance.class), new Object[] {day,department});
+			return attendanceList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public AttendanceCount getAttendenceCountMonthlyById(int eid,int year,int month){
+		try {
+			String sql = "select * from attendance,employee where attendance.eid=employee.eid and attendance.day like ? and employee.eid=? and attendance.isAllowed=0";
+			String yearmonth;
+			if(month<10)
+				yearmonth=year+"-0"+month+"%";
+			else		
+				yearmonth=year+"-"+month+"%";
+			List<Attendance> attendanceList = (List<Attendance>) this.qr.query(sql, new BeanListHandler<Attendance>(
+					Attendance.class), new Object[] {yearmonth,eid});
+			
+			AttendanceCount ac=new AttendanceCount();
+			ac.setEid(eid);
+			ac.setYear(year);
+			ac.setMonth(month);
+			
+			double penalty=0;
+			int countLate=0;
+			int countAbsent=0;
+			for(int i=0;i<attendanceList.size();i++){
+				Attendance attendance=attendanceList.get(i);
+				
+				ac.setName(attendance.getName());
+				
+				penalty=penalty+attendance.getPenalty();
+				
+				if(attendance.getIsAbsent()==1)
+					countAbsent++;
+				if(attendance.getIsAbsent()==0&&attendance.getIsLate()==1)
+					countLate++;
+			}
+			
+			ac.setCountLate(countLate);
+			ac.setCountAbsent(countAbsent);
+			ac.setPenalty(penalty);
+			return ac;
 		} catch (SQLException e) {
 			System.out.println("wrong");
 			e.printStackTrace();

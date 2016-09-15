@@ -41,7 +41,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
-    <td width="99%" align="left" valign="top">您的位置：部员信息</td>
+    <td width="99%" align="left" valign="top">您的位置：下属信息&nbsp;&nbsp;>&nbsp;&nbsp;部员列表</td>
   </tr>
   <tr>
     <td align="left" valign="top">

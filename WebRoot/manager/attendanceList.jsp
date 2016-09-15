@@ -41,7 +41,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
-    <td width="99%" align="left" valign="top">您的位置：部员工资</td>
+    <td width="99%" align="left" valign="top">您的位置：下属考勤&nbsp;&nbsp;>&nbsp;&nbsp;考勤表查询</td>
   </tr>
   <tr>
     <td align="left" valign="top">
@@ -49,11 +49,11 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
   		<tr>
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
-               <span>根据日期查询部员考勤情况（yyyy-mm-dd）：</span><input type="text" name="" value="" class="text-word">
-               <input name="" type="button" value="查询" class="text-but">
+               <span>根据日期查询部员考勤情况（yyyy-mm-dd）：</span><input type="text" name="" value="" class="text-word" id="day">
+               <input name="" type="button" value="查询" class="text-but" onclick="getListByDay('${sessionScope.employee.getDepartment() }')" >
 
-               <span>根据员工编号查询部员考勤情况：</span><input type="text" name="" value="" class="text-word">
-               <input name="" type="button" value="查询" class="text-but">
+               <span>根据员工编号查询部员考勤情况：</span><input type="text" name="" value="" class="text-word" id="eid">
+               <input name="" type="button" value="查询" class="text-but" onclick="getListByEid('${sessionScope.employee.getDepartment() }')" >
 	         </form>
          </td>
           <!--<td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">设置部员奖金</a></td>-->
@@ -68,13 +68,13 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
       <tr>
         <th align="center" valign="middle" class="borderright">编号</th>
         <th align="center" valign="middle" class="borderright">姓名</th>
-        <th align="center" valign="middle" class="borderright">等级</th>
-        <th align="center" valign="middle" class="borderright">基本工资</th>
+        <th align="center" valign="middle" class="borderright">日期</th>
+        <th align="center" valign="middle" class="borderright">是否迟到</th>
+        <th align="center" valign="middle" class="borderright">是否缺勤</th>
+        <th align="center" valign="middle" class="borderright">是否被批免</th>
         <th align="center" valign="middle" class="borderright">罚金</th>
-        <!--可修改-->
-        <th align="center" valign="middle" class="borderright">奖金</th>
       </tr>
-      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+  <!--     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="center" valign="middle" class="borderright borderbottom">1</td>
         <td align="center" valign="middle" class="borderright borderbottom">张三</td>
         <td align="center" valign="middle" class="borderright borderbottom">组长</td>
@@ -97,7 +97,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         <td align="center" valign="middle" class="borderright borderbottom">8000</td>
         <td align="center" valign="middle" class="borderright borderbottom">200</td>
         <td align="center" valign="middle" class="borderright borderbottom">【空待设】</td>
-      </tr>
+      </tr> -->
 
     </table></td>
     </tr>

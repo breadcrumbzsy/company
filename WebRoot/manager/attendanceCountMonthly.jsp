@@ -41,7 +41,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
-    <td width="99%" align="left" valign="top">您的位置：部员工资</td>
+    <td width="99%" align="left" valign="top">您的位置：下属考勤&nbsp;&nbsp;>&nbsp;&nbsp;月考勤统计表查询</td>
   </tr>
   <tr>
     <td align="left" valign="top">
@@ -50,9 +50,9 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
                <span>选择月份查询部员考勤状况：</span>
-               <span>年份：</span><input type="text" name="" value="" class="text-word">
-               <span>月份：</span><input type="text" name="" value="" class="text-word">
-	         <input name="" type="button" value="设置" class="text-but">
+               <span>年份：</span><input type="text" name="" value="" class="text-word" id="year" >
+               <span>月份：</span><input type="text" name="" value="" class="text-word" id="month" >
+	         <input name="" type="button" value="设置" class="text-but" onclick="getAttendanceCountMonthly('${sessionScope.employee.getDepartment() }')">
 	         </form>
          </td>
           <!--<td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">设置部员奖金</a></td>-->
@@ -67,31 +67,12 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
       <tr>
         <th align="center" valign="middle" class="borderright">编号</th>
         <th align="center" valign="middle" class="borderright">姓名</th>
+        <th align="center" valign="middle" class="borderright">月份</th>
         <th align="center" valign="middle" class="borderright">月迟到次数</th>
         <th align="center" valign="middle" class="borderright">月缺勤次数</th>
         <th align="center" valign="middle" class="borderright">罚金</th>
       </tr>
-      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-        <td align="center" valign="middle" class="borderright borderbottom">1</td>
-        <td align="center" valign="middle" class="borderright borderbottom">张三</td>
-        <td align="center" valign="middle" class="borderright borderbottom">3</td>
-        <td align="center" valign="middle" class="borderright borderbottom">1</td>
-        <td align="center" valign="middle" class="borderright borderbottom">350</td>
-      </tr>
-      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-        <td align="center" valign="middle" class="borderright borderbottom">1</td>
-        <td align="center" valign="middle" class="borderright borderbottom">张三</td>
-        <td align="center" valign="middle" class="borderright borderbottom">3</td>
-        <td align="center" valign="middle" class="borderright borderbottom">1</td>
-        <td align="center" valign="middle" class="borderright borderbottom">350</td>
-      </tr>
-      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-        <td align="center" valign="middle" class="borderright borderbottom">1</td>
-        <td align="center" valign="middle" class="borderright borderbottom">张三</td>
-        <td align="center" valign="middle" class="borderright borderbottom">3</td>
-        <td align="center" valign="middle" class="borderright borderbottom">1</td>
-        <td align="center" valign="middle" class="borderright borderbottom">350</td>
-      </tr>
+
 
     </table></td>
     </tr>

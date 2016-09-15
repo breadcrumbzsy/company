@@ -39,7 +39,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
-    <td width="99%" align="left" valign="top">您的位置：部员工资</td>
+    <td width="99%" align="left" valign="top">您的位置：下属工资&nbsp;&nbsp;>&nbsp;&nbsp;设置当月奖金及工资</td>
   </tr>
   <tr>
     <td align="left" valign="top">
