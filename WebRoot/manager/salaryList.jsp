@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,java.text.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -38,6 +38,12 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 </style>
 </head>
 <body>
+<%
+SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+String date= format.format(new Date());
+String year=date.substring(0,4);
+String month=date.substring(5,7);
+%>
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
@@ -50,8 +56,8 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
                <span>选择月份查询部员工资详情：</span>
-               <input type="text" name="" value="" class="text-word" id="year"><span> 年</span>
-               <input type="text" name="" value="" class="text-word" id="month"><span> 月</span>
+               <input type="text" name="" value="<%=year%>" class="text-word" id="year"><span> 年</span>
+               <input type="text" name="" value="<%=month%>" class="text-word" id="month"><span> 月</span>
 	         <input name="" type="button" value="查询" class="text-but" onclick="getSalaryListByMonth('${sessionScope.employee.getDepartment() }')" >
 
                <span>|    填写部员编号查询工资详情：</span>

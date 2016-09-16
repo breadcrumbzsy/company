@@ -15,6 +15,7 @@ import net.sf.json.JSONObject;
 import service.AttendanceService;
 import service.RecordService;
 import domain.Attendance;
+import domain.Employee;
 import domain.Record;
 
 public class AttendanceListByEid extends HttpServlet {
@@ -58,29 +59,34 @@ public class AttendanceListByEid extends HttpServlet {
 		List<Attendance> list=as.findByEid(eid, department);
 		for (int i = 0; i < list.size(); i++) {
 			Attendance a = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("aid",a.getAid() );
-			obj.put("eid", a.getEid());
-			obj.put("name", a.getName());
-			obj.put("day", a.getDay().toString());
-//			obj.put("isLate", a.getIsLate());
-//			obj.put("isAbsent", a.getIsAbsent());
-//			obj.put("isAllowed", a.getIsAllowed());
-			if( a.getIsLate()==1)
-				obj.put("isLate","是");
-			else
-				obj.put("isLate","否");
-			if(a.getIsAbsent()==1)
-				obj.put("isAbsent","是");
-			else
-				obj.put("isAbsent","否");
-			if(a.getIsAllowed()==1)
-				obj.put("isAllowed","是");
-			else
-				obj.put("isAllowed","否");
-			obj.put("penalty", a.getPenalty());
-			
-			array.add(obj);
+
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(a.getEid()!=bmjl.getEid()){
+				JSONObject obj = new JSONObject();
+				obj.put("aid",a.getAid() );
+				obj.put("eid", a.getEid());
+				obj.put("name", a.getName());
+				obj.put("day", a.getDay().toString());
+//				obj.put("isLate", a.getIsLate());
+//				obj.put("isAbsent", a.getIsAbsent());
+//				obj.put("isAllowed", a.getIsAllowed());
+				if( a.getIsLate()==1)
+					obj.put("isLate","是");
+				else
+					obj.put("isLate","否");
+				if(a.getIsAbsent()==1)
+					obj.put("isAbsent","是");
+				else
+					obj.put("isAbsent","否");
+				if(a.getIsAllowed()==1)
+					obj.put("isAllowed","是");
+				else
+					obj.put("isAllowed","否");
+				obj.put("penalty", a.getPenalty());
+				
+				array.add(obj);
+				
+			}
 
 		}
 		JSONObject json = new JSONObject();

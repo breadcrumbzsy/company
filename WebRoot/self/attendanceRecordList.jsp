@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,java.text.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -39,6 +39,12 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 <script type="text/javascript" src="../js/attendance.js"></script>
 </head>
 <body>
+<%
+SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+String date= format.format(new Date());
+String year=date.substring(0,4);
+String month=date.substring(5,7);
+%>
 
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
@@ -51,8 +57,8 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
   		<tr>
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
-               <span>年份：</span><input type="text" name="" value="" class="text-word" id="year">
-               <span>月份：</span><input type="text" name="" value="" class="text-word" id="month">
+               <span>年份：</span><input type="text" name="" value="<%=year%>" class="text-word" id="year">
+               <span>月份：</span><input type="text" name="" value="<%=month%>" class="text-word" id="month">
 	         <input name="" type="button" value="查询" class="text-but" onclick="getRecordList()">
 	         </form>
          </td>

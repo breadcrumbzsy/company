@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,java.text.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -38,6 +38,10 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 </style>
 </head>
 <body>
+<%
+SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+String date= format.format(new Date());
+%>
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
@@ -49,7 +53,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
   		<tr>
    		 <td width="90%" align="left" valign="middle">
 	         <form method="post" action="">
-               <span>日期：</span><input type="text" name="" value="" class="text-word" id="day" >
+               <span>日期（yyyy-mm-dd）：</span><input type="text" name="" value="<%=date%>" class="text-word" id="day" >
 	         <input name="" type="button" value="生成" class="text-but" onclick="attendanceSetDaily('${sessionScope.employee.getDepartment() }')">
 	         </form>
          </td>

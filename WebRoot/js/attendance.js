@@ -277,7 +277,7 @@ function attendanceSetDaily(department) {
 	
 	var url="/company/servlet/AttendanceAdd";
 	var params="day="+day+"&department="+department;
-	alert(params);
+	//alert(params);
 	$.ajax({
 		type:'POST',
 		url:url,
@@ -322,7 +322,7 @@ function attendanceSetDaily(department) {
 						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].isAbsent+"</td>"
 						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].isAllowed+"</td>"
 						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].penalty+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"\" onclick=\"setAllowed("+array[i].aid+")\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">提交</a>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"../servlet/AttendanceSetAllowed?aid="+array[i].aid+"\"  target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">批免</a>"
 					+"</tr>");
 			} 
 		}

@@ -51,51 +51,54 @@ public class EmployeeInfoByEid extends HttpServlet {
 		int eid=Integer.valueOf(request.getParameter("eid"));
 		String department=request.getParameter("department");
 	
+
 		Employee employee = es.findByEid(eid);
 		JSONObject json=new JSONObject();
 		
-		JSONArray skillArray = new JSONArray();
-		JSONArray trainingArray = new JSONArray();
-		List<Skill> skillList=employee.getSkill();
-		List<Training> trainingList=employee.getTraining();
-		System.out.println(skillList);
-		System.out.println(trainingList);
-		for(int i=0;i<skillList.size();i++){
-			Skill skill=skillList.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("sklid", skill.getSklid());
-			obj.put("eid", skill.getEid());
-			obj.put("description", skill.getDescription());
-			skillArray.add(obj);
-		}
-		for(int i=0;i<trainingList.size();i++){
-			Training  training =trainingList.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("tid", training.getTid());
-			obj.put("eid", training.getEid());
-			obj.put("description", training.getDescription());
-			trainingArray.add(obj);
-		}
-		
-		if(employee.getDepartment().equals(department)){
-			json.put("eid", employee.getEid());
-			json.put("name", employee.getName());
-			json.put("gender", employee.getGender());
-			json.put("email", employee.getEmail());
-			json.put("tel", employee.getTel());
-			json.put("enrollTime", employee.getEnrollTime().toString());
-			json.put("level", employee.getLevel());
-			json.put("department", employee.getDepartment());
-			if(employee.getIsQuit()==0){
-				json.put("shifouzaizhi", "是");
-			}else{
-				json.put("shifouzaizhi", "否");
+		Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+		if(eid!=bmjl.getEid()){
+			JSONArray skillArray = new JSONArray();
+			JSONArray trainingArray = new JSONArray();
+			List<Skill> skillList=employee.getSkill();
+			List<Training> trainingList=employee.getTraining();
+			System.out.println(skillList);
+			System.out.println(trainingList);
+			for(int i=0;i<skillList.size();i++){
+				Skill skill=skillList.get(i);
+				JSONObject obj = new JSONObject();
+				obj.put("sklid", skill.getSklid());
+				obj.put("eid", skill.getEid());
+				obj.put("description", skill.getDescription());
+				skillArray.add(obj);
 			}
-			json.put("skillArray", skillArray);
-			json.put("trainingArray", trainingArray);
+			for(int i=0;i<trainingList.size();i++){
+				Training  training =trainingList.get(i);
+				JSONObject obj = new JSONObject();
+				obj.put("tid", training.getTid());
+				obj.put("eid", training.getEid());
+				obj.put("description", training.getDescription());
+				trainingArray.add(obj);
+			}
 			
+			if(employee.getDepartment().equals(department)){
+				json.put("eid", employee.getEid());
+				json.put("name", employee.getName());
+				json.put("gender", employee.getGender());
+				json.put("email", employee.getEmail());
+				json.put("tel", employee.getTel());
+				json.put("enrollTime", employee.getEnrollTime().toString());
+				json.put("level", employee.getLevel());
+				json.put("department", employee.getDepartment());
+				if(employee.getIsQuit()==0){
+					json.put("shifouzaizhi", "是");
+				}else{
+					json.put("shifouzaizhi", "否");
+				}
+				json.put("skillArray", skillArray);
+				json.put("trainingArray", trainingArray);
+				
+			}
 		}
-		
 		//skill&training
 		System.out.println("EmployeeInfoByEid:"+json.toString());
 		response.getWriter().write(json.toString());

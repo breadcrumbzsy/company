@@ -59,17 +59,23 @@ public class AttendanceCountMonthly extends HttpServlet {
 		List<AttendanceCount> list = as.getAttendanceCountMonthly(year, month, department);
 		for (int i = 0; i < list.size(); i++) {
 			AttendanceCount attendanceCount = list.get(i);
-			JSONObject obj = new JSONObject();
 			
-			obj.put("eid", attendanceCount.getEid());
-			obj.put("name", attendanceCount.getName());
-			obj.put("year", attendanceCount.getYear());
-			obj.put("month", attendanceCount.getMonth());
-			obj.put("countLate", attendanceCount.getCountLate());
-			obj.put("countAbsent", attendanceCount.getCountAbsent());
-			obj.put("penalty", attendanceCount.getPenalty());
-			
-			array.add(obj);
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(attendanceCount.getEid()!=bmjl.getEid()){
+				
+				JSONObject obj = new JSONObject();
+				
+				obj.put("eid", attendanceCount.getEid());
+				obj.put("name", attendanceCount.getName());
+				obj.put("year", attendanceCount.getYear());
+				obj.put("month", attendanceCount.getMonth());
+				obj.put("countLate", attendanceCount.getCountLate());
+				obj.put("countAbsent", attendanceCount.getCountAbsent());
+				obj.put("penalty", attendanceCount.getPenalty());
+				
+				array.add(obj);
+			}
+	
 
 		}
 		JSONObject json = new JSONObject();

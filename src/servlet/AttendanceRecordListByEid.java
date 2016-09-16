@@ -58,19 +58,23 @@ public class AttendanceRecordListByEid extends HttpServlet {
 		List<Record> list = rs.findByEid(eid, department);
 		for (int i = 0; i < list.size(); i++) {
 			Record record = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("rid", record.getRid());
-			obj.put("eid", record.getEid());
-			obj.put("name", record.getName());
-			obj.put("day", record.getDay().toString());
-			obj.put("inTime", record.getInTime().toString());
-			if(record.getOutTime()!=null)
-				obj.put("outTime", record.getOutTime().toString());
-			else {
-				obj.put("outTime", null);
-			}
 			
-			array.add(obj);
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(record.getEid()!=bmjl.getEid()){
+				JSONObject obj = new JSONObject();
+				obj.put("rid", record.getRid());
+				obj.put("eid", record.getEid());
+				obj.put("name", record.getName());
+				obj.put("day", record.getDay().toString());
+				obj.put("inTime", record.getInTime().toString());
+				if(record.getOutTime()!=null)
+					obj.put("outTime", record.getOutTime().toString());
+				else {
+					obj.put("outTime", null);
+				}
+				
+				array.add(obj);
+			}
 
 		}
 		JSONObject json = new JSONObject();

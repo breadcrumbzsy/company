@@ -55,7 +55,10 @@ public class EmployeeInfoByName extends HttpServlet {
 		List<Employee> list = es.findByName(name);
 		for (int i = 0; i< list.size(); i++) {
 			Employee employee = list.get(i);
-			if(employee.getDepartment().equals(department)){
+			
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(employee.getDepartment().equals(department)&&employee.getEid()!=bmjl.getEid()){
+				
 				JSONObject obj = new JSONObject();
 				obj.put("eid", employee.getEid());
 				obj.put("name", employee.getName());

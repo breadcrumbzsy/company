@@ -46,6 +46,7 @@ public class AttendanceService {
 		for(int i=0;i<employeeList.size();i++){
 			Employee employee=employeeList.get(i);
 			AttendanceCount ac=ad.getAttendenceCountMonthlyById(employee.getEid(), year, month);
+			ac.setName(employee.getName());
 			attendanceCountList.add(ac);
 		}
 		return attendanceCountList;

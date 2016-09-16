@@ -13,6 +13,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import service.AttendanceService;
 import domain.Attendance;
+import domain.Employee;
 import domain.Record;
 
 public class AttendanceListByDay extends HttpServlet {
@@ -58,27 +59,32 @@ public class AttendanceListByDay extends HttpServlet {
 		List<Attendance> list=as.findByDay(day, department);
 		for (int i = 0; i < list.size(); i++) {
 			Attendance a = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("aid",a.getAid() );
-			obj.put("eid", a.getEid());
-			obj.put("name", a.getName());
-			obj.put("day", a.getDay().toString());
-			if( a.getIsLate()==1)
-				obj.put("isLate","是");
-			else
-				obj.put("isLate","否");
-			if(a.getIsAbsent()==1)
-				obj.put("isAbsent","是");
-			else
-				obj.put("isAbsent","否");
-			if(a.getIsAllowed()==1)
-				obj.put("isAllowed","是");
-			else
-				obj.put("isAllowed","否");
 			
-			obj.put("penalty", a.getPenalty());
-			
-			array.add(obj);
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(a.getEid()!=bmjl.getEid()){
+				JSONObject obj = new JSONObject();
+				obj.put("aid",a.getAid() );
+				obj.put("eid", a.getEid());
+				obj.put("name", a.getName());
+				obj.put("day", a.getDay().toString());
+				if( a.getIsLate()==1)
+					obj.put("isLate","是");
+				else
+					obj.put("isLate","否");
+				if(a.getIsAbsent()==1)
+					obj.put("isAbsent","是");
+				else
+					obj.put("isAbsent","否");
+				if(a.getIsAllowed()==1)
+					obj.put("isAllowed","是");
+				else
+					obj.put("isAllowed","否");
+				
+				obj.put("penalty", a.getPenalty());
+				
+				array.add(obj);
+			}
+		
 
 		}
 		JSONObject json = new JSONObject();

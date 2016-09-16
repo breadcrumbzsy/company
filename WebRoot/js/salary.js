@@ -157,7 +157,8 @@ function getUnsetList(department) {
 						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].name+"</td>"
 						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+year+"-"+month+"</td>"
 						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].level+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\" id=\""+array[i].eid+"\">"+"999"+"</td>"
+						//+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\" id=\""+array[i].eid+"\">"+"999"+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\"><input type=\"text\" id=\""+array[i].eid+"\"></td>"
 						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"\" onclick=\"salaryAdd("+array[i].eid+","+year+","+month+")\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">提交</a>"
 					+"</tr>");
 			} 
@@ -166,7 +167,7 @@ function getUnsetList(department) {
 }
 
 function salaryAdd(eid,year,month){
-	var bonus=document.getElementById(eid).innerHTML;
+	var bonus=document.getElementById(eid).value;
 
 	
 	var url="/company/servlet/SalaryAdd";
@@ -187,11 +188,48 @@ function salaryAdd(eid,year,month){
 			var jsonto=eval('('+html+')');
 			if(jsonto.result==1){
 				//document.getElementById("msg").innerHTML="修改成功";
-				alert("提交成功");
+				alert("设置成功");
 			}else{
 				//document.getElementById("msg").innerHTML="修改失败";
-				alert("提交失败");
+				alert("设置失败");
 			}
 		}
 	})
+	
+//	var url="/company/servlet/SalaryListUnset";
+//	var params="year="+year+"&month="+month+"&department="+department;
+//	$.ajax({
+//		type:'POST',
+//		url:url,
+//		dataType:'html',
+//		data:params,
+//		beforeSend:function(){},
+//		complete:function(){},
+//		success:function(json){
+//			var datas = eval('(' + json + ')');
+//			var array=datas.array;
+//			$("#main-tab").empty();
+//			$("#main-tab").append("<tr>"
+//						+"<th align=\"center\" valign=\"middle\" class=\"borderright\">编号</th>"
+//						+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
+//						+"<th align=\"center\" valign=\"middle\" class=\"borderright\">年月</th>"
+//						+"<th align=\"center\" valign=\"middle\" class=\"borderright\">等级</th>"
+//						+"<th align=\"center\" valign=\"middle\" class=\"borderright\">奖金</th>"
+//						+"<th align=\"center\" valign=\"middle\">操作</th>"
+//					+"</tr>");
+//			for(var i=0;i<array.length;i++){
+//                $("#main-tab").append(" <tr onMouseOut=\"this.style.backgroundColor='#ffffff'\" onMouseOver=\"this.style.backgroundColor='#edf5ff'\">"
+//            			+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].eid+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].name+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+year+"-"+month+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].level+"</td>"
+//						//+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\" id=\""+array[i].eid+"\">"+"999"+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\"><input type=\"text\" id=\""+array[i].eid+"\"></td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"\" onclick=\"salaryAdd("+array[i].eid+","+year+","+month+","+department+")\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">提交</a>"
+//					+"</tr>");
+//			} 
+//		}
+//	})
+	
+	
 }

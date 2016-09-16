@@ -57,17 +57,22 @@ public class SalaryListByEid extends HttpServlet {
 		List<Salary> list = ss.findByEid(department, eid);
 		for (int i = 0; i < list.size(); i++) {
 			Salary salary = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("sid", salary.getSid());
-			obj.put("eid", salary.getEid());
-			obj.put("name", salary.getName());
-			obj.put("year", salary.getYear_());
-			obj.put("month", salary.getMonth_());
-			obj.put("basic", salary.getBasic());
-			obj.put("bonus", salary.getBonus());
-			obj.put("penalty", salary.getPenalty());
-			obj.put("total", salary.getTotal());
-			array.add(obj);
+			
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(salary.getEid()!=bmjl.getEid()){
+				JSONObject obj = new JSONObject();
+				obj.put("sid", salary.getSid());
+				obj.put("eid", salary.getEid());
+				obj.put("name", salary.getName());
+				obj.put("year", salary.getYear_());
+				obj.put("month", salary.getMonth_());
+				obj.put("basic", salary.getBasic());
+				obj.put("bonus", salary.getBonus());
+				obj.put("penalty", salary.getPenalty());
+				obj.put("total", salary.getTotal());
+				array.add(obj);
+			}
+			
 		}
 		JSONObject json = new JSONObject();
 		json.put("array", array);

@@ -60,11 +60,16 @@ public class SalaryListUnset extends HttpServlet {
 		List<Employee> list = ss.findSalaryUnset(department, year, month);
 		for (int i = 0; i < list.size(); i++) {
 			Employee employee = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("eid", employee.getEid());
-			obj.put("name", employee.getName());
-			obj.put("level", employee.getLevel());
-			array.add(obj);
+			
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(employee.getEid()!=bmjl.getEid()){
+				JSONObject obj = new JSONObject();
+				obj.put("eid", employee.getEid());
+				obj.put("name", employee.getName());
+				obj.put("level", employee.getLevel());
+				array.add(obj);
+			}
+		
 		}
 		JSONObject json = new JSONObject();
 		json.put("array", array);

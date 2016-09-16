@@ -53,22 +53,27 @@ public class EmployeeList extends HttpServlet {
 		List<Employee> list = es.findByDepartment(department);
 		for (int i = 0; i< list.size(); i++) {
 			Employee employee = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("eid", employee.getEid());
-			obj.put("name", employee.getName());
-			obj.put("gender", employee.getGender());
-			obj.put("email", employee.getEmail());
-			obj.put("tel", employee.getTel());
-			obj.put("enrollTime", employee.getEnrollTime().toString());
-			obj.put("level", employee.getLevel());
-			obj.put("department", employee.getDepartment());
-			if(employee.getIsQuit()==0){
-				obj.put("shifouzaizhi", "是");
-			}else{
-				obj.put("shifouzaizhi", "否");
+			
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(employee.getEid()!=bmjl.getEid()){
+				JSONObject obj = new JSONObject();
+				obj.put("eid", employee.getEid());
+				obj.put("name", employee.getName());
+				obj.put("gender", employee.getGender());
+				obj.put("email", employee.getEmail());
+				obj.put("tel", employee.getTel());
+				obj.put("enrollTime", employee.getEnrollTime().toString());
+				obj.put("level", employee.getLevel());
+				obj.put("department", employee.getDepartment());
+				if(employee.getIsQuit()==0){
+					obj.put("shifouzaizhi", "是");
+				}else{
+					obj.put("shifouzaizhi", "否");
+				}
+
+				array.add(obj);
 			}
 
-			array.add(obj);
 		}
 		JSONObject json = new JSONObject();
 		json.put("array", array);

@@ -1,5 +1,6 @@
 package test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class TestDao {
 		skill.add(skill3);
 		skill.add(skill4);
 		skill.add(skill5);
-		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		//ed.addSkills(1, skill);
 		//rd.addRecord(1);
 		ad.getPenaltyMonthly(1, 2016, 9);
