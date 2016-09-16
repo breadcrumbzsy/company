@@ -67,6 +67,7 @@ public class EmployeeList extends HttpServlet {
 			}else{
 				obj.put("shifouzaizhi", "否");
 			}
+
 			array.add(obj);
 		}
 		JSONObject json = new JSONObject();

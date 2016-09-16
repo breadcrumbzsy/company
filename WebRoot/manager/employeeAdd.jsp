@@ -14,6 +14,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="images/main/favicon.ico" />
 <script type="text/javascript" src="../js/employee.js"></script>
 <script src="../js/jquery.js"></script>
+
+<script type="text/javascript">
+function addSkillInputBox(){
+	$("#skillput").append("<input type=\"text\" name=\"skillInput\" value=\"\" class=\"text-word-short\" >");
+	 return false;  
+}
+function addTrainingInputBox(){
+	$("#trainingput").append("<input type=\"text\" name=\"trainingInput\" value=\"\" class=\"text-word-short\" >");
+	 return false;  
+}
+</script>
+
 <style>
 body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
 #searchmain{ font-size:12px;}
@@ -37,6 +49,9 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 .bggray{ background:#f9f9f9; font-size:14px; font-weight:bold; padding:10px 10px 10px 0; width:120px;}
 .main-for{ padding:10px;}
 .main-for input.text-word{ width:310px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#FFF; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
+.main-for input.text-word-short{ width:182px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#FFF; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
+.main-for input.text-word-fix{ width:310px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
+.main-for input.text-word-fix-short{ width:182px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
 .main-for select{ width:310px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#FFF; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666;}
 .main-for input.text-but{ width:100px; height:40px; line-height:30px; border: 1px solid #cdcdcd; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#969696; float:left; margin:0 10px 0 0; display:inline; cursor:pointer; font-size:14px; font-weight:bold;}
 #addinfo a{ font-size:14px; font-weight:bold; background:url(../images/main/addinfoblack.jpg) no-repeat 0 1px; padding:0px 0 0px 20px; line-height:45px;}
@@ -110,6 +125,23 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         <td align="left" valign="middle" class="borderright borderbottom main-for">
           <input type="text" name="" value="" class="text-word" id="password">
         </td>
+      </tr>
+      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+         <td align="right" valign="middle" class="borderright borderbottom bggray">技能：</td>
+		<td align="left" valign="middle" class="borderright borderbottom main-for" id="skillput">
+			   
+         		<!--  <input type="text" name="" value="" class="text-word-short" > -->
+	
+			<input type="button" value="添加" onclick="addSkillInputBox()" >
+ 		</td>
+      </tr>
+      
+       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+         <td align="right" valign="middle" class="borderright borderbottom bggray">所受培训：</td>
+		<td align="left" valign="middle" class="borderright borderbottom main-for" id="trainingput">
+		    <!-- <input type="text" name="" value="" class="text-word-short" > -->
+			 <input type="button" value="添加" onclick="addTrainingInputBox()" >
+ 		</td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>

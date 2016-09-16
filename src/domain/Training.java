@@ -1,23 +1,31 @@
 package domain;
 
 public class Training {
+	private int tid;
 	private int eid;
-	private String describe;
+	private String description;
 	public int getEid() {
 		return eid;
 	}
 	public void setEid(int eid) {
-		this.eid = eid;
+}
+	public String getDescription() {
+		return description;
 	}
-	public String getDescribe() {
-		return describe;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	
+	public int getTid() {
+		return tid;
+	}
+	public void setTid(int tid) {
+		this.tid = tid;
 	}
 	@Override
 	public String toString() {
-		return "Training [eid=" + eid + ", describe=" + describe + "]";
+		return "Training [tid=" + tid + ", eid=" + eid + ", description="
+				+ description + "]";
 	}
-	
+
 }

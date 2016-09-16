@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -37,6 +38,9 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 .bggray{ background:#f9f9f9; font-size:14px; font-weight:bold; padding:10px 10px 10px 0; width:120px;}
 .main-for{ padding:10px;}
 .main-for input.text-word{ width:310px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#FFF; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
+.main-for input.text-word-short{ width:182px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#FFF; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
+.main-for input.text-word-fix{ width:310px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
+.main-for input.text-word-fix-short{ width:182px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; padding:0 10px;}
 .main-for select{ width:310px; height:36px; line-height:36px; border:#ebebeb 1px solid; background:#FFF; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666;}
 .main-for input.text-but{ width:100px; height:40px; line-height:30px; border: 1px solid #cdcdcd; background:#e6e6e6; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#969696; float:left; margin:0 10px 0 0; display:inline; cursor:pointer; font-size:14px; font-weight:bold;}
 #addinfo a{ font-size:14px; font-weight:bold; background:url(../images/main/addinfoblack.jpg) no-repeat 0 1px; padding:0px 0 0px 20px; line-height:45px;}
@@ -65,19 +69,19 @@ pageContext.setAttribute("department", request.getParameter("department"));
         <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">编号：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="eid">
+        <input type="text" name="" value="" class="text-word-fix" id="eid"  readonly="readonly" >
         </td>
         </tr>
-              <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">姓名：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="name">
+        <input type="text" name="" value="" class="text-word-fix" id="name" readonly="readonly">
         </td>
         </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">性别：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="gender">
+        <input type="text" name="" value="" class="text-word-fix" id="gender" readonly="readonly">
         </td>
         </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -95,7 +99,7 @@ pageContext.setAttribute("department", request.getParameter("department"));
        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">入职时间：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="enrollTime">
+        <input type="text" name="" value="" class="text-word-fix" id="enrollTime" readonly="readonly">
         </td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -115,6 +119,9 @@ pageContext.setAttribute("department", request.getParameter("department"));
           <input type="text" name="" value="" class="text-word" id="shifouzaizhi">
         </td>
       </tr>
+      
+
+      
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -122,11 +129,31 @@ pageContext.setAttribute("department", request.getParameter("department"));
         <input name="" type="reset" value="重置" class="text-but"></td>
         <div id="msg" style="color:red;text-align:center;font-size:16pt;"></div>
         </tr>
+        
+                <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+         <td align="right" valign="middle" class="borderright borderbottom bggray">技能：</td>
+		<td align="left" valign="middle" class="borderright borderbottom main-for" id="skillput">
+			<%-- <c:forEach items="${sessionScope.employee.getSkill() }" var="skill" varStatus="vs">    
+         		 <input type="text" name="" value=${skill.description} class="text-word-fix-short" >  ⓧ  </input>
+			</c:forEach> --%> 
+			<!-- <a href="">添加</a> -->
+ 		</td>
+      </tr>
+      
+       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+         <td align="right" valign="middle" class="borderright borderbottom bggray">所受培训：</td>
+		<td align="left" valign="middle" class="borderright borderbottom main-for" id="trainingput">
+			<%-- <c:forEach items="${sessionScope.employee.getTraining() }" var="training" varStatus="vs">    
+         		 <input type="text" name="" value=${training.description} class="text-word-fix-short" >  ⓧ  </input>
+			</c:forEach>  --%>
+			<!-- <a href="">  添加</a> -->
+ 		</td>
+      </tr>
     </table>
     </form>
     </td>
     </tr>
 </table>
 </body>
-<script>window.onload=getEmployeeDetail(${eid },"${department }")</script>
+<script>window.onload=getEmployeeModifyDetail(${eid },"${department }")</script>
 </html>

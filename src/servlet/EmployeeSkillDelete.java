@@ -59,10 +59,17 @@ public class EmployeeSkillDelete extends HttpServlet {
 		}
 
 		json.put("result", result);
-		response.getWriter().write(json.toString());
+
+		//response.getWriter().write(json.toString());
 		System.out.println(json.toString());
 
+		if(result==1)
+			response.getWriter().write("删除成功!");
+		else
+			response.getWriter().write("删除失败!");
 		
+//		response.getWriter().write("<script>alert(\"删除成功\")</script>");
+//		response.sendRedirect(request.getHeader("Referer"));
 		
 	}
 

@@ -21,8 +21,8 @@ function login() {
 			if (jsonto.result == 1) {
 				window.location = "/company/index.jsp";
 			} else {
-				document.getElementById("msg").innerHTML="登录失败";
-//				 alert(jsonto.msg);
+				//document.getElementById("msg").innerHTML="登录失败";
+				 alert("登录失败");
 			}
 
 
@@ -38,84 +38,87 @@ function modifyPassword() {
 	
 
 	if(newPassword1!=newPassword2){
-		document.getElementById("msg").innerHTML="两次输入的新密码不一致";
-		return;
-	}
-	if(newPassword1.length>30||newPassword1.length<6){
-		document.getElementById("msg").innerHTML="新密码不符合要求";
-		return;
-	}
-	
-	var url="/company/servlet/EmployeePasswordModify";
-	var params="oldPassword="+oldPassword+"&newPassword="+newPassword1;
-	alert(params);
-	$.ajax({
-		type:'POST',
-		url:url,
-		dataType:'html',
-		data:params,
-		beforeSend:function(){
-			
-		},
-		complete:function(){
-			
-		},
-		success:function(html){
-			var jsonto=eval('('+html+')');
-			if(jsonto.result==1){
-				//document.getElementById("msg").innerHTML="修改成功";
-				alert("修改成功");
-			}else{
-				//document.getElementById("msg").innerHTML="修改失败";
-				alert("修改失败");
+		//document.getElementById("msg").innerHTML="两次输入的新密码不一致";
+		alert("两次输入的新密码不一致");
+
+	}else if(newPassword1.length>18||newPassword1.length<6){
+		//document.getElementById("msg").innerHTML="新密码不符合要求";
+		alert("新密码不符合要求");
+		
+	}else{
+		var url="/company/servlet/EmployeePasswordModify";
+		var params="oldPassword="+oldPassword+"&newPassword="+newPassword1;
+		$.ajax({
+			type:'POST',
+			url:url,
+			dataType:'html',
+			data:params,
+			beforeSend:function(){
+				
+			},
+			complete:function(){
+				
+			},
+			success:function(html){
+				var jsonto=eval('('+html+')');
+				if(jsonto.result==1){
+					//document.getElementById("msg").innerHTML="修改成功";
+					alert("修改成功");
+				}else{
+					//document.getElementById("msg").innerHTML="修改失败";
+					alert("修改失败");
+				}
 			}
-		}
-	})
-}
-function getListById(department){
-	var url="/company/servlet/EmployeeInfoByEid";
+		})
+	}
 	
-	var eid = document.getElementById("eid").value;
-	var params = "department=" + department+"&eid="+eid;
-	alert(params);
-	$.ajax({
-		type:'POST',
-		url:url,
-		dataType:'html',
-		data:params,
-		beforeSend:function(){},
-		complete:function(){},
-		success:function(json){
-			var datas = eval('(' + json + ')');
-	
-			$("#main-tab").empty();
-			$("#main-tab").append("<tr>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">编号</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">电子邮箱</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">联系电话</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">入职时间</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">等级</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">部门</th>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">是否在职</th>"
-					+"<th align=\"center\" valign=\"middle\">操作</th>"
-					+"</tr>");
-			for(var i=0;i<array.length;i++){
-                $("#main-tab").append(" <tr onMouseOut=\"this.style.backgroundColor='#ffffff'\" onMouseOver=\"this.style.backgroundColor='#edf5ff'\">"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.eid+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.name+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.email+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.tel+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.enrollTime+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.level+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.department+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.shifouzaizhi+"</td>"
-						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"employeeInfoDetail.jsp?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\add\">详情</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"employeeModify.jsp?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">编辑</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"EmployeeQuit?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">设为离职</a></td>"
-						+"</tr>");
-			} 
-		}
-	})	
+
 }
+function getListById(department){//貌似这个方法没用
+//	var url="/company/servlet/EmployeeInfoByEid";
+//	
+//	var eid = document.getElementById("eid").value;
+//	var params = "department=" + department+"&eid="+eid;
+//	alert(params);
+//	$.ajax({
+//		type:'POST',
+//		url:url,
+//		dataType:'html',
+//		data:params,
+//		beforeSend:function(){},
+//		complete:function(){},
+//		success:function(json){
+//			var datas = eval('(' + json + ')');
+//	
+//			$("#main-tab").empty();
+//			$("#main-tab").append("<tr>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">员工编号</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">电子邮箱</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">联系电话</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">入职时间</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">等级</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">部门</th>"
+//					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">是否在职</th>"
+//					+"<th align=\"center\" valign=\"middle\">操作</th>"
+//					+"</tr>");
+//			for(var i=0;i<array.length;i++){
+//                $("#main-tab").append(" <tr onMouseOut=\"this.style.backgroundColor='#ffffff'\" onMouseOver=\"this.style.backgroundColor='#edf5ff'\">"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.eid+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.name+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.email+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.tel+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.enrollTime+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.level+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.department+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.shifouzaizhi+"</td>"
+//						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"employeeInfoDetail.jsp?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\add\">详情</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"employeeModify.jsp?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">编辑</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"EmployeeQuit?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">设为离职</a></td>"
+//						+"</tr>");
+//			} 
+//		}
+//	})	
+}
+
 
 function getEmployeeList(department) {
 	var url="/company/servlet/EmployeeList";
@@ -133,7 +136,7 @@ function getEmployeeList(department) {
 			var array=datas.array;
 			$("#main-tab").empty();
 			$("#main-tab").append("<tr>"
-					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">编号</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">员工编号</th>"
 					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
 					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">电子邮箱</th>"
 					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">联系电话</th>"
@@ -278,23 +281,16 @@ function getEmployeeDetail(eid,department){
 			$("#level").attr("value", datas.level);
 			$("#department").attr("value", datas.department);
 			$("#shifouzaizhi").attr("value", datas.shifouzaizhi);
-//			if(datas.status==0){
-//				$("#status").empty();
-//				$("#status").append("<option>开通</option>");
-//			}
-//			if(datas.status==1){
-//				$("#status").empty();
-//				$("#status").append("<option>暂停</option>");
-//			}
-//			if(datas.status==2){
-//				$("#status").empty();
-//				$("#status").append("<option>删除</option>");
-//			}
-//	
-//			if(datas.gender=="f")
-//				$("#female").attr("checked", "checked");
-//			if(datas.gender=="m")
-//				$("#male").attr("checked", "checked");
+			
+			var skills=datas.skillArray;
+			var trainings=datas.trainingArray;
+			
+			for(var i=0;i<skills.length;i++){
+				$("#skillput").append("<input type=\"text\" name=\"\" value=\""+skills[i].description+"\" class=\"text-word-fix-short\" readonly=\"readonly\">");
+			}
+			for(var i=0;i<trainings.length;i++){
+				$("#trainingput").append("<input type=\"text\" name=\"\" value=\""+trainings[i].description+"\" class=\"text-word-fix-short\" readonly=\"readonly\">");
+			}
 		}
 	});
 }
@@ -309,10 +305,25 @@ function employeeAdd() {
 	var level=document.getElementById("level").value;
 	var department=document.getElementById("department").value;
 	var password=document.getElementById("password").value;
-	//skill…&training
+	
+	var skillArray=document.getElementsByName("skillInput");
+	var skillString="|";
+	for(var i=0;i<skillArray.length;i++){
+		if(skillArray.item(i).value.length!=0){
+			skillString=skillString+skillArray.item(i).value+"|";
+		}
+		
+	}
+	var trainingArray=document.getElementsByName("trainingInput");
+	var trainingString="|";
+	for(var i=0;i<trainingArray.length;i++){
+		if(trainingArray.item(i).value.length!=0)
+			trainingString=trainingString+trainingArray.item(i).value+"|";
+	}
 
 	var url="/company/servlet/EmployeeAdd";
-	var params="eid="+eid+"&name="+name+"&gender="+gender+"&email="+email+"&tel="+tel+"&enrollTime="+enrollTime+"&level="+level+"&department="+department+"&password="+password;
+	var params="eid="+eid+"&name="+name+"&gender="+gender+"&email="+email+"&tel="+tel+"&enrollTime="+enrollTime+"&level="+level+"&department="+department+"&password="+password+"&skillString="+skillString+"&trainingString="+trainingString;
+	alert(params);
 	$.ajax({
 		type:'POST',
 		url:url,
@@ -371,4 +382,127 @@ function employeeModify() {
 			}
 		}
 	})
+}
+
+function getEmployeeModifyDetail(eid,department){
+	//var eid = document.getElementById("eid").value;
+	var params = "eid=" + eid+"&department="+department;
+//	var sendinfo;
+	var url="/company/servlet/EmployeeInfoByEid";
+	$.ajax({
+		type : 'POST',
+		url : url,
+		dataType : 'html',
+		data : params,
+		beforeSend : function() {
+			
+		},
+		complete : function() {
+
+		},
+		success : function(json) {
+			var datas = eval('(' + json + ')');
+			$("#eid").attr("value", datas.eid);
+			$("#name").attr("value", datas.name);
+			$("#gender").attr("value", datas.gender);
+			$("#email").attr("value", datas.email);
+			$("#tel").attr("value", datas.tel);
+			$("#enrollTime").attr("value", datas.enrollTime);
+			$("#level").attr("value", datas.level);
+			$("#department").attr("value", datas.department);
+			$("#shifouzaizhi").attr("value", datas.shifouzaizhi);
+			
+			var skills=datas.skillArray;
+			var trainings=datas.trainingArray;
+			
+			for(var i=0;i<skills.length;i++){
+				$("#skillput").append("<input type=\"text\" name=\"\" value=\""+skills[i].description+"\" class=\"text-word-fix-short\" readonly=\"readonly\"><a href=\"../servlet/EmployeeSkillDelete?sklid="+skills[i].sklid+"\">  ⓧ  </a></input>");
+			}
+			$("#skillput").append("<input type=\"button\" value=\"添加\" id=\"skillButton\" onclick=\"addSkillInputBoxModify("+eid+")\" >");
+			for(var i=0;i<trainings.length;i++){
+				$("#trainingput").append("<input type=\"text\" name=\"\" value=\""+trainings[i].description+"\" class=\"text-word-fix-short\" readonly=\"readonly\"><a href=\"../servlet/EmployeeTrainingDelete?tid="+trainings[i].tid+"\">  ⓧ  </a></input>");
+			}
+			$("#trainingput").append("<input type=\"button\" value=\"添加\" id=\"trainingButton\" onclick=\"addTrainingInputBoxModify("+eid+")\" >");
+		}
+	});
+}
+
+function addSkillInputBoxModify(eid){
+	$("#skillput").append("<input type=\"text\" id=\"newSkill\" value=\"\" class=\"text-word-short\" >");
+	$("#skillButton").attr("value", "提交");
+	$("#skillButton").attr("onclick","submitAddSkill("+eid+")");
+	 return false;  
+}
+function addTrainingInputBoxModify(eid){
+	$("#trainingput").append("<input type=\"text\" id=\"newTraining\" value=\"\" class=\"text-word-short\" >");
+	$("#trainingButton").attr("value", "提交");
+	$("#trainingButton").attr("onclick", "submitAddTraining("+eid+")");
+	 return false;  
+}
+
+function submitAddSkill(eid){
+	var description=document.getElementById("newSkill").value;
+	var params="eid="+eid+"&description="+description;
+	
+	var url="/company/servlet/EmployeeSkillAdd";
+//	$("#skillButton").attr("value", "添加");
+//	$("#skillButton").attr("onclick","addSkillInputBoxModify("+eid+")");
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){
+			
+		},
+		complete:function(){
+			
+		},
+		
+		success:function(html){
+			var jsonto=eval('('+html+')');
+			if(jsonto.result==1){
+				//document.getElementById("msg").innerHTML="修改成功";
+				alert("添加成功");
+			}else{
+				//document.getElementById("msg").innerHTML="修改失败";
+				alert("添加失败");
+			}
+		}
+	})
+	window.location.reload();
+	$("#skillButton").attr("value", "添加");
+	$("#skillButton").attr("onclick","addSkillInputBoxModify("+eid+")");
+}
+
+function submitAddTraining(eid){
+	var description=document.getElementById("newTraining").value;
+	var params="eid="+eid+"&description="+description;
+	
+	var url="/company/servlet/EmployeeTrainingAdd";
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){
+			
+		},
+		complete:function(){
+			
+		},
+		success:function(html){
+			var jsonto=eval('('+html+')');
+			if(jsonto.result==1){
+				//document.getElementById("msg").innerHTML="修改成功";
+				alert("添加成功");
+			}else{
+				//document.getElementById("msg").innerHTML="修改失败";
+				alert("添加失败");
+			}
+		}
+	})
+	window.location.reload();
+	$("#trainingButton").attr("value", "添加");
+	$("#skillButton").attr("onclick","addTrainingInputBoxModify("+eid+")");
 }

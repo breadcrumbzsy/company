@@ -77,49 +77,66 @@ public class EmployeeAdd extends HttpServlet {
 		String department = request.getParameter("department");
 		String password=request.getParameter("password");
 		
-		String skill1=request.getParameter("skill1");
-		String skill2=request.getParameter("skill2");
-		String skill3=request.getParameter("skill3");
-		String skill4=request.getParameter("skill4");
-		String skill5=request.getParameter("skill5");
+		String skillString= request.getParameter("skillString");
+		String trainingString=request.getParameter("trainingString");
+		System.out.println("skillString"+skillString);
+		System.out.println("trainingString"+trainingString);
 		
-		String training1=request.getParameter("training1");
-		String training2=request.getParameter("training2");
-		String training3=request.getParameter("training3");
-		String training4=request.getParameter("training4");
-		String training5=request.getParameter("training5");
+		String [] skillArray=skillString.split("\\|");
+		String [] trainingArray=trainingString.split("\\|");
 		
-		List<String> skill=new ArrayList<String>();
-		if(skill1!=null)
-			skill.add(skill1);
-		if(skill2!=null)
-			skill.add(skill2);
-		if(skill3!=null)
-			skill.add(skill3);
-		if(skill4!=null)
-			skill.add(skill4);
-		if(skill5!=null)
-			skill.add(skill5);
-		List<String> training=new ArrayList<String>();
-		if(training1!=null)
-			training.add(training1);
-		if(training2!=null)
-			training.add(training2);
-		if(training3!=null)
-			training.add(training3);
-		if(training4!=null)
-			training.add(training4);
-		if(training5!=null)
-			training.add(training5);
+		List<String> skills=new ArrayList<String>();
+		List<String> trainings=new ArrayList<String>();
 		
-		System.out.println(skill);
-		System.out.println(training);
+		for(int i=1;i<skillArray.length;i++){
+			skills.add(skillArray[i]);
+		}
+		for(int i=1;i<trainingArray.length;i++){
+			trainings.add(trainingArray[i]);
+		}
+//		String skill1=request.getParameter("skill1");
+//		String skill2=request.getParameter("skill2");
+//		String skill3=request.getParameter("skill3");
+//		String skill4=request.getParameter("skill4");
+//		String skill5=request.getParameter("skill5");
+//		
+//		String training1=request.getParameter("training1");
+//		String training2=request.getParameter("training2");
+//		String training3=request.getParameter("training3");
+//		String training4=request.getParameter("training4");
+//		String training5=request.getParameter("training5");
+//		
+//		List<String> skill=new ArrayList<String>();
+//		if(skill1!=null)
+//			skill.add(skill1);
+//		if(skill2!=null)
+//			skill.add(skill2);
+//		if(skill3!=null)
+//			skill.add(skill3);
+//		if(skill4!=null)
+//			skill.add(skill4);
+//		if(skill5!=null)
+//			skill.add(skill5);
+//		List<String> training=new ArrayList<String>();
+//		if(training1!=null)
+//			training.add(training1);
+//		if(training2!=null)
+//			training.add(training2);
+//		if(training3!=null)
+//			training.add(training3);
+//		if(training4!=null)
+//			training.add(training4);
+//		if(training5!=null)
+//			training.add(training5);
+//		
+//		System.out.println(skill);
+//		System.out.println(training);
 		
 		JSONObject json=new JSONObject();
 		int result=0;
 		
 		try {
-			result = employeeService.add(eid, name, gender, email, tel, enrollTime, level,department, 0, password, skill, training);
+			result = employeeService.add(eid, name, gender, email, tel, enrollTime, level,department, 0, password, skills, trainings);
 			json.put("result", Integer.valueOf(result));
 		} catch (Exception e) {
 			json.put("result", Integer.valueOf(result));

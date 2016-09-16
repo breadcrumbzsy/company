@@ -61,19 +61,19 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">旧密码：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="oldPassword">
+        <input type="password" name="" value="" class="text-word" id="oldPassword">
         </td>
         </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">新密码：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="newPassword1">
+        <input type="password" name="" value="" class="text-word" id="newPassword1">   密码长度必须大于等于6位，小于等于18位
         </td>
         </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">确认新密码：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="newPassword2">
+        <input type="password" name="" value="" class="text-word" id="newPassword2">   密码长度必须大于等于6位，小于等于18位
         </td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

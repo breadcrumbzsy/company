@@ -59,7 +59,14 @@ public class EmployeeTrainingDelete extends HttpServlet {
 		}
 
 		json.put("result", result);
-		response.getWriter().write(json.toString());
+		
+		//response.getWriter().write(json.toString());
+		if(result==1)
+			response.getWriter().write("删除成功!");
+		else
+			response.getWriter().write("删除失败!");
+		
+		//response.sendRedirect(request.getHeader("Referer"));
 		System.out.println(json.toString());
 	}
 

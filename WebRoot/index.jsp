@@ -1,8 +1,17 @@
 <%@ page language="java" import="java.util.*,domain.Employee" pageEncoding="UTF-8"%>
 <%
+if (request.getSession().getAttribute("employee") == null) {
+		//request.getRequestDispatcher("adminLogin.jsp").forward(request,response);
+		response.sendRedirect(request.getContextPath()
+				+ "/login.jsp");
+}
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%-- <%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%> --%>
 
 <!doctype html>
 <html>
@@ -15,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--框架样式-->
 <frameset rows="95,*,30" cols="*" frameborder="no" border="0" framespacing="0">
 <!--top样式-->
-	<frame src="top.html" name="topframe" scrolling="no" noresize id="topframe" title="topframe" />
+	<frame src="top.jsp" name="topframe" scrolling="no" noresize id="topframe" title="topframe" />
 <!--contact样式-->
 	<frameset id="attachucp" framespacing="0" border="0" frameborder="no" cols="194,12,*" rows="*">
 		<frame scrolling="auto" noresize="" frameborder="no" name="leftFrame" src="left.jsp"></frame>

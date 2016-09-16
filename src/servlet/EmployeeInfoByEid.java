@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import service.EmployeeService;
 import domain.Employee;
+import domain.Skill;
+import domain.Training;
 
 public class EmployeeInfoByEid extends HttpServlet {
 
@@ -52,6 +53,30 @@ public class EmployeeInfoByEid extends HttpServlet {
 	
 		Employee employee = es.findByEid(eid);
 		JSONObject json=new JSONObject();
+		
+		JSONArray skillArray = new JSONArray();
+		JSONArray trainingArray = new JSONArray();
+		List<Skill> skillList=employee.getSkill();
+		List<Training> trainingList=employee.getTraining();
+		System.out.println(skillList);
+		System.out.println(trainingList);
+		for(int i=0;i<skillList.size();i++){
+			Skill skill=skillList.get(i);
+			JSONObject obj = new JSONObject();
+			obj.put("sklid", skill.getSklid());
+			obj.put("eid", skill.getEid());
+			obj.put("description", skill.getDescription());
+			skillArray.add(obj);
+		}
+		for(int i=0;i<trainingList.size();i++){
+			Training  training =trainingList.get(i);
+			JSONObject obj = new JSONObject();
+			obj.put("tid", training.getTid());
+			obj.put("eid", training.getEid());
+			obj.put("description", training.getDescription());
+			trainingArray.add(obj);
+		}
+		
 		if(employee.getDepartment().equals(department)){
 			json.put("eid", employee.getEid());
 			json.put("name", employee.getName());
@@ -66,11 +91,13 @@ public class EmployeeInfoByEid extends HttpServlet {
 			}else{
 				json.put("shifouzaizhi", "否");
 			}
+			json.put("skillArray", skillArray);
+			json.put("trainingArray", trainingArray);
 			
 		}
 		
 		//skill&training
-		System.out.println(json.toString());
+		System.out.println("EmployeeInfoByEid:"+json.toString());
 		response.getWriter().write(json.toString());
 	}
 

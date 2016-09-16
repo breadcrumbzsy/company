@@ -205,7 +205,7 @@ public class EmployeeDao {
 	public Employee findByEid(int eid) {
 		try {
 			String sql = "select * from employee where eid=? ";
-			List list = this.qr.query(sql, new BeanListHandler<Employee>(
+			List<Employee> list = this.qr.query(sql, new BeanListHandler<Employee>(
 					Employee.class), new Object[] { eid });
 			Employee employee;
 

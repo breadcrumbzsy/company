@@ -67,7 +67,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
     
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
       <!-- <tr>
-        <th align="center" valign="middle" class="borderright">编号</th>
+        <th align="center" valign="middle" class="borderright">员工编号</th>
         <th align="center" valign="middle" class="borderright">姓名</th>
         <th align="center" valign="middle" class="borderright">电子邮箱</th>
         <th align="center" valign="middle" class="borderright">联系电话</th>
