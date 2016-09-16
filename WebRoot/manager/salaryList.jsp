@@ -107,9 +107,9 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
  -->
     </table></td>
     </tr>
-  <tr>
+<!--   <tr>
     <td align="left" valign="top" class="fenye">11 条数据 1/1 页&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">尾页</a></td>
-  </tr>
+  </tr> -->
 </table>
 </body>
 </html>

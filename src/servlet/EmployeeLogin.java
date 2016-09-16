@@ -55,8 +55,15 @@ public class EmployeeLogin extends HttpServlet {
 		int result = 0;
 		try {
 			Employee employee = es.login(eid, password);
-			if (employee != null)
-				result = 1;
+			if (employee != null&&employee.getIsQuit()==0){
+				if(employee.getLevel().equals("总经理")){
+					result=1;
+				}else if(employee.getLevel().equals("部门经理")){
+					result=2;
+				}else{
+					result=3;
+				}
+			}	
 			else {
 				result = 0;
 			}

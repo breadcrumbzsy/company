@@ -39,6 +39,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 <script type="text/javascript" src="../js/attendance.js"></script>
 </head>
 <body>
+
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
   <tr>
@@ -55,7 +56,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 	         <input name="" type="button" value="查询" class="text-but" onclick="getRecordList()">
 	         </form>
          </td>
-  		  <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">签到/签退</a></td>
+  		  <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="../servlet/RecordServlet?eid=${sessionScope.employee.getEid() }" target="mainFrame" onFocus="this.blur()" class="add">签到/签退</a></td>
   		</tr>
 	</table>
     </td>
@@ -82,9 +83,9 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 
     </table></td>
     </tr>
-  <tr>
+<!--   <tr>
     <td align="left" valign="top" class="fenye">11 条数据 1/1 页&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">尾页</a></td>
-  </tr>
+  </tr> -->
 </table>
 </body>
 </html>

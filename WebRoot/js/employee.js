@@ -19,9 +19,12 @@ function login() {
 		success : function(html) {
 			var jsonto = eval('(' + html + ')');
 			if (jsonto.result == 1) {
-				window.location = "/company/index.jsp";
-			} else {
-				//document.getElementById("msg").innerHTML="登录失败";
+				window.location = "/company/index_zjl.jsp";
+			} else if(jsonto.result==2){
+				window.location = "/company/index_bmjl.jsp";
+			} else if(jsonto.result==3){
+				window.location = "/company/index_yg.jsp";
+			}else{
 				 alert("登录失败");
 			}
 

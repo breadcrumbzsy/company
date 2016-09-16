@@ -61,7 +61,13 @@ public class AttendanceSetAllowed extends HttpServlet {
 			json.put("result", Integer.valueOf(result));
 			e.printStackTrace();
 		}
-		response.getWriter().write(json.toString());
+		//response.getWriter().write(json.toString());
+		
+		if(result==1)
+			response.getWriter().write("设置成功!");
+		else
+			response.getWriter().write("设置失败!");
+		
 		System.out.println(json.toString());
 
 	}

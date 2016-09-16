@@ -147,7 +147,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
         <input name="" type="submit" value="添加" class="text-but" onclick="employeeAdd()">
-        <input name="" type="reset" value="重置" class="text-but"></td>
+       <!--  <input name="" type="reset" value="重置" class="text-but"></td> -->
         <div id="msg" style="color:red;text-align:center;font-size:16pt;"></div>
         </tr>
     </table>

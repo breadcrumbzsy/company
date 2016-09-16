@@ -64,7 +64,11 @@ public class AttendanceRecordListByEid extends HttpServlet {
 			obj.put("name", record.getName());
 			obj.put("day", record.getDay().toString());
 			obj.put("inTime", record.getInTime().toString());
-			obj.put("outTime", record.getOutTime().toString());
+			if(record.getOutTime()!=null)
+				obj.put("outTime", record.getOutTime().toString());
+			else {
+				obj.put("outTime", null);
+			}
 			
 			array.add(obj);
 
