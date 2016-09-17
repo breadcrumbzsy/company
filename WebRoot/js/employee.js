@@ -309,6 +309,11 @@ function employeeAdd() {
 	var department=document.getElementById("department").value;
 	var password=document.getElementById("password").value;
 	
+	if(level!="组长"&&level!="普通成员"&&level!="试用员工"){
+		alert("等级输入不符合要求");
+		return false;
+	}
+	
 	var skillArray=document.getElementsByName("skillInput");
 	var skillString="|";
 	for(var i=0;i<skillArray.length;i++){
@@ -326,7 +331,7 @@ function employeeAdd() {
 
 	var url="/company/servlet/EmployeeAdd";
 	var params="eid="+eid+"&name="+name+"&gender="+gender+"&email="+email+"&tel="+tel+"&enrollTime="+enrollTime+"&level="+level+"&department="+department+"&password="+password+"&skillString="+skillString+"&trainingString="+trainingString;
-	alert(params);
+	//alert(params);
 	$.ajax({
 		type:'POST',
 		url:url,
@@ -350,7 +355,63 @@ function employeeAdd() {
 		}
 	})
 }
+function employeeAddB() {
+	var eid=document.getElementById("eid").value;
+	var name=document.getElementById("name").value;
+	var gender=document.getElementById("gender").value;
+	var email=document.getElementById("email").value;
+	var tel=document.getElementById("tel").value;
+	var enrollTime=document.getElementById("enrollTime").value;
+	var level=document.getElementById("level").value;
+	var department=document.getElementById("department").value;
+	var password=document.getElementById("password").value;
+	
+	if(level!="部门经理"&&level!="组长"&&level!="普通成员"&&level!="试用员工"){
+		alert("等级输入不符合要求");
+		return false;
+	}
+	
+	var skillArray=document.getElementsByName("skillInput");
+	var skillString="|";
+	for(var i=0;i<skillArray.length;i++){
+		if(skillArray.item(i).value.length!=0){
+			skillString=skillString+skillArray.item(i).value+"|";
+		}
+		
+	}
+	var trainingArray=document.getElementsByName("trainingInput");
+	var trainingString="|";
+	for(var i=0;i<trainingArray.length;i++){
+		if(trainingArray.item(i).value.length!=0)
+			trainingString=trainingString+trainingArray.item(i).value+"|";
+	}
 
+	var url="/company/servlet/EmployeeAdd";
+	var params="eid="+eid+"&name="+name+"&gender="+gender+"&email="+email+"&tel="+tel+"&enrollTime="+enrollTime+"&level="+level+"&department="+department+"&password="+password+"&skillString="+skillString+"&trainingString="+trainingString;
+	//alert(params);
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){
+			
+		},
+		complete:function(){
+			
+		},
+		success:function(html){
+			var jsonto=eval('('+html+')');
+			if(jsonto.result==1){
+				//document.getElementById("msg").innerHTML="修改成功";
+				alert("添加成功");
+			}else{
+				//document.getElementById("msg").innerHTML="修改失败";
+				alert("添加失败");
+			}
+		}
+	})
+}
 function employeeModify() {
 	var eid=document.getElementById("eid").value;
 	var email=document.getElementById("email").value;
@@ -360,6 +421,11 @@ function employeeModify() {
 	var shifouzaizhi=document.getElementById("shifouzaizhi").value;
 	//skill…&training也可以修改！！！！！！！！！
 
+	if((level!="组长"&&level!="普通成员"&&level!="试用员工")||(shifouzaizhi!="是"&&shifouzaizhi!="否")){
+		alert("等级输入不符合要求");
+		return false;
+	}
+	
 	var url="/company/servlet/EmployeeModify";
 	var params="eid="+eid+"&email="+email+"&tel="+tel+"&level="+level+"&department="+department+"&shifouzaizhi="+shifouzaizhi;
 	alert(params);
@@ -386,7 +452,46 @@ function employeeModify() {
 		}
 	})
 }
+function employeeModifyB() {
+	var eid=document.getElementById("eid").value;
+	var email=document.getElementById("email").value;
+	var tel=document.getElementById("tel").value;
+	var level=document.getElementById("level").value;
+	var department=document.getElementById("department").value;
+	var shifouzaizhi=document.getElementById("shifouzaizhi").value;
+	//skill…&training也可以修改！！！！！！！！！
 
+	if((level!="部门经理"&&level!="组长"&&level!="普通成员"&&level!="试用员工")||(shifouzaizhi!="是"&&shifouzaizhi!="否")){
+		alert("等级输入不符合要求");
+		return false;
+	}
+	
+	var url="/company/servlet/EmployeeModify";
+	var params="eid="+eid+"&email="+email+"&tel="+tel+"&level="+level+"&department="+department+"&shifouzaizhi="+shifouzaizhi;
+	alert(params);
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){
+			
+		},
+		complete:function(){
+			
+		},
+		success:function(html){
+			var jsonto=eval('('+html+')');
+			if(jsonto.result==1){
+				//document.getElementById("msg").innerHTML="修改成功";
+				alert("修改成功");
+			}else{
+				//document.getElementById("msg").innerHTML="修改失败";
+				alert("修改失败");
+			}
+		}
+	})
+}
 function getEmployeeModifyDetail(eid,department){
 	//var eid = document.getElementById("eid").value;
 	var params = "eid=" + eid+"&department="+department;
@@ -508,4 +613,140 @@ function submitAddTraining(eid){
 	window.location.reload();
 	$("#trainingButton").attr("value", "添加");
 	$("#skillButton").attr("onclick","addTrainingInputBoxModify("+eid+")");
+}
+
+//------------------------------------------------boss
+function getEmployeeListBoss(department) {
+	var url="/company/servlet/EmployeeListB";
+	var params="";
+//	alert(params);
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){},
+		complete:function(){},
+		success:function(json){
+			var datas = eval('(' + json + ')');
+			var array=datas.array;
+			$("#main-tab").empty();
+			$("#main-tab").append("<tr>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">员工编号</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">电子邮箱</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">联系电话</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">入职时间</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">等级</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">部门</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">是否在职</th>"
+					+"<th align=\"center\" valign=\"middle\">操作</th>"
+					+"</tr>");
+			for(var i=0;i<array.length;i++){
+		
+                $("#main-tab").append(" <tr onMouseOut=\"this.style.backgroundColor='#ffffff'\" onMouseOver=\"this.style.backgroundColor='#edf5ff'\">"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].eid+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].name+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].email+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].tel+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].enrollTime+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].level+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].department+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].shifouzaizhi+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"employeeInfoDetail.jsp?eid="+array[i].eid+"&department="+department+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\add\">详情</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"employeeModify.jsp?eid="+array[i].eid+"&department="+department+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">编辑</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"../servlet/EmployeeQuit?eid="+array[i].eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">设为离职</a></td>"
+						+"</tr>");
+			} 
+		}
+	})
+}
+function getListByEidBoss(){
+	var url="/company/servlet/EmployeeInfoByEidB";
+	var department="董事会";
+	var eid = document.getElementById("eid").value;
+	var params = "eid="+eid;
+//	alert(params);
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){},
+		complete:function(){},
+		success:function(json){
+			var datas = eval('(' + json + ')');
+
+			$("#main-tab").empty();
+			$("#main-tab").append("<tr>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">编号</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">电子邮箱</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">联系电话</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">入职时间</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">等级</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">部门</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">是否在职</th>"
+					+"<th align=\"center\" valign=\"middle\">操作</th>"
+					+"</tr>");
+			if(datas.eid!=null){
+                $("#main-tab").append(" <tr onMouseOut=\"this.style.backgroundColor='#ffffff'\" onMouseOver=\"this.style.backgroundColor='#edf5ff'\">"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.eid+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.name+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.email+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.tel+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.enrollTime+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.level+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.department+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+datas.shifouzaizhi+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"employeeInfoDetail.jsp?eid="+datas.eid+"&department="+department+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\add\">详情</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"employeeModify.jsp?eid="+datas.eid+"&department="+department+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">编辑</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"../servlet/EmployeeQuit?eid="+datas.eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">设为离职</a></td>"
+						+"</tr>");
+			} 
+		}
+	})		
+}
+
+function getListByNameBoss(){
+	var url="/company/servlet/EmployeeInfoByNameB";
+	
+	var name = document.getElementById("name").value;
+	var params = "name="+name;
+	var department="董事会";
+//	alert(params);
+	$.ajax({
+		type:'POST',
+		url:url,
+		dataType:'html',
+		data:params,
+		beforeSend:function(){},
+		complete:function(){},
+		success:function(json){
+			var datas = eval('(' + json + ')');
+			var array=datas.array;
+			$("#main-tab").empty();
+			$("#main-tab").append("<tr>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">编号</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">姓名</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">电子邮箱</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">联系电话</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">入职时间</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">等级</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">部门</th>"
+					+"<th align=\"center\" valign=\"middle\" class=\"borderright\">是否在职</th>"
+					+"<th align=\"center\" valign=\"middle\">操作</th>"
+					+"</tr>");
+			for(var i=0;i<array.length;i++){
+		
+                $("#main-tab").append(" <tr onMouseOut=\"this.style.backgroundColor='#ffffff'\" onMouseOver=\"this.style.backgroundColor='#edf5ff'\">"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].eid+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].name+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].email+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].tel+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].enrollTime+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].level+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].department+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderright borderbottom\">"+array[i].shifouzaizhi+"</td>"
+						+"<td align=\"center\" valign=\"middle\" class=\"borderbottom\"><a href=\"employeeInfoDetail.jsp?eid="+array[i].eid+"&department="+department+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\add\">详情</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"employeeModify.jsp?eid="+array[i].eid+"&department="+department+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">编辑</a><span class=\"gray\">&nbsp;|&nbsp;</span><a href=\"../servlet/EmployeeQuit?eid="+array[i].eid+"\" target=\"mainFrame\" onFocus=\"this.blur()\" class=\"add\">设为离职</a></td>"
+						+"</tr>");
+			} 
+		}
+	})		
 }

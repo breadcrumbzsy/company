@@ -53,8 +53,8 @@ body{overflow-x:hidden; background:url(images/main/leftbg.jpg) left top repeat-y
       </div>
       <div>
         <span>下属考勤</span>
+         <a href="manager/attendanceSetDaily.jsp" target="mainFrame" onFocus="this.blur()">生成日考勤表</a>
         <a href="manager/attendanceRecordList.jsp" target="mainFrame" onFocus="this.blur()">签到记录查询</a>
-        <a href="manager/attendanceSetDaily.jsp" target="mainFrame" onFocus="this.blur()">生成日考勤表</a>
         <a href="manager/attendanceList.jsp" target="mainFrame" onFocus="this.blur()">考勤表查询</a>
         <a href="manager/attendanceCountMonthly.jsp" target="mainFrame" onFocus="this.blur()">月考勤统计表查询</a>
       </div>

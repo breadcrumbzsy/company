@@ -2,11 +2,11 @@ package dao;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
+
+import javassist.compiler.Javac;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -24,8 +24,65 @@ public class AttendanceDao {
 	
 
 	
-	public int addDay(String department,Date day_) {
+	public int addDay(String department,Date day_) throws NumberFormatException, ParseException {
 		List<Employee> employeeList=ed.findByDepartment(department);
+		System.out.println("employeeList:"+employeeList);
+		
+		for(int i=0;i<employeeList.size();i++){
+			Employee employee=employeeList.get(i);
+			if(!employee.getLevel().equals("部门经理")){
+				int eid;
+				Date day;
+				int isAbsent;
+				int isLate;
+				double penalty;
+				eid=employee.getEid();
+
+				day=day_;
+				
+				List<Record> recordList=rd.findByEidAndDay(eid, day);
+				System.out.println("recordList:"+recordList);
+				System.out.println("eid="+eid+";isTimeLongEnough+"+isTimeLongEnough(recordList));
+				if(recordList.size()==0){
+					isAbsent=1;
+					isLate=0;	
+					penalty=200;//缺勤罚款200
+				}else if(Integer.valueOf(recordList.get(0).getInTime().toString().substring(0, 2))>=10){
+					isAbsent=1;
+					isLate=1;
+					penalty=200;//迟到2h以上算成缺勤罚款200
+				}else if(isTimeLongEnough(recordList)==false){
+					isAbsent=1;
+					isLate=0;
+					penalty=200;//就算没有迟到2h以上，不足6小时算成缺勤罚款200
+				}else if(Integer.valueOf(recordList.get(0).getInTime().toString().substring(0, 2))>=8){
+					isAbsent=0;
+					isLate=1;
+					penalty=50;//迟到罚款50
+				}else{
+					isAbsent=0;
+					isLate=0;
+					penalty=0;//wu 
+				}
+				System.out.println("isAbsent:"+isAbsent);
+				System.out.println("isLate:"+isLate);
+				System.out.println("penalty:"+penalty);
+				try {
+					String sql = "insert into attendance(eid,day,isAbsent,isLate,penalty) values(?,?,?,?,?)";
+					Object[] params = {eid,day,isAbsent,isLate,penalty};
+					this.qr.update(sql, params);
+					System.out.println("ok");
+					
+				} catch (SQLException e) {
+					System.out.println("wrong");
+					e.printStackTrace();
+				}	
+			}
+		}
+		return 1;
+	}
+	public int addDayBoss(Date day_) throws NumberFormatException, ParseException {
+		List<Employee> employeeList=ed.findDeptMng();
 		System.out.println("employeeList:"+employeeList);
 		for(int i=0;i<employeeList.size();i++){
 			int eid;
@@ -45,11 +102,15 @@ public class AttendanceDao {
 				isAbsent=1;
 				isLate=0;	
 				penalty=200;//缺勤罚款200
-			}else if(Integer.valueOf(recordList.get(recordList.size()-1).getInTime().toString().substring(0, 2))>10){
+			}else if(Integer.valueOf(recordList.get(0).getInTime().toString().substring(0, 2))>=10){
 				isAbsent=1;
 				isLate=1;
 				penalty=200;//迟到2h以上算成缺勤罚款200
-			}else if(Integer.valueOf(recordList.get(recordList.size()-1).getInTime().toString().substring(0, 2))>8){
+			}else if(isTimeLongEnough(recordList)==false){
+				isAbsent=1;
+				isLate=0;
+				penalty=200;//就算没有迟到2h以上，不足6小时算成缺勤罚款200
+			}else if(Integer.valueOf(recordList.get(0).getInTime().toString().substring(0, 2))>=8){
 				isAbsent=0;
 				isLate=1;
 				penalty=50;//迟到罚款50
@@ -144,12 +205,39 @@ public class AttendanceDao {
 			throw new RuntimeException(e);
 		}
 	}
+	public List<Attendance> findByEidBoss(int eid) {
+		try {
+			//还要修改
+			String sql = "select * from attendance ,employee  where attendance.eid=employee.eid and employee.eid=? order by employee.eid";
+			List<Attendance> attendanceList = (List<Attendance>) this.qr.query(sql, new BeanListHandler<Attendance>(
+					Attendance.class), new Object[] {eid});
+			return attendanceList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	public List<Attendance> findByDay(Date day,String department) {
 		try {
 			//还要修改
 			String sql = "select * from attendance ,employee  where attendance.eid=employee.eid and attendance.day=? and department=? order by employee.eid";
 			List<Attendance> attendanceList = (List<Attendance>) this.qr.query(sql, new BeanListHandler<Attendance>(
 					Attendance.class), new Object[] {day,department});
+			return attendanceList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Attendance> findByDayBoss(Date day) {
+		try {
+			//还要修改
+			String sql = "select * from attendance ,employee  where attendance.eid=employee.eid and attendance.day=? and employee.level='部门经理' order by employee.eid";
+			List<Attendance> attendanceList = (List<Attendance>) this.qr.query(sql, new BeanListHandler<Attendance>(
+					Attendance.class), new Object[] {day});
 			return attendanceList;
 		} catch (SQLException e) {
 			System.out.println("wrong");
@@ -200,5 +288,27 @@ public class AttendanceDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
+	private Boolean isTimeLongEnough(List<Record> recordList) throws ParseException{
+		SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        long allTime = 0;
+		for(int i=0;i<recordList.size();i++){
+			if(recordList.get(i).getOutTime()!=null){
+				java.util.Date begin = dfs.parse("2000-01-01 "+recordList.get(i).getInTime().toString()+".000");
+				java.util.Date end = dfs.parse("2000-01-01 "+recordList.get(i).getOutTime().toString()+".000");
+				long period=end.getTime()-begin.getTime();
+				allTime=allTime+period;
+			}
+		}
+		long day = allTime / (24 * 60 * 60 * 1000);
+		long hour = (allTime / (60 * 60 * 1000) - day * 24);
+		if(hour>=6)
+			return true;
+		return false;
+	}
+
+
+
 
 }

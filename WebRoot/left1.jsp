@@ -37,31 +37,22 @@ body{overflow-x:hidden; background:url(images/main/leftbg.jpg) left top repeat-y
         <a href="self/employeePasswordSet.jsp" target="mainFrame" onFocus="this.blur()">修改密码</a>
       </div>
       <div>
-        <span>个人考勤</span>
-        <a href="self/attendanceRecordList.jsp" target="mainFrame" onFocus="this.blur()">签到记录查询</a>
-        <a href="self/attendanceList.jsp" target="mainFrame" onFocus="this.blur()">考勤记录查询</a>
-      </div>
-      <div>
-        <span>个人工资</span>
-        <a href="self/salaryListYearly.jsp" target="mainFrame" onFocus="this.blur()">工资查询</a>
-      </div>
       <div>
         <span>下属信息</span>
-        <a href="manager/employeeInfoList.jsp" target="mainFrame" onFocus="this.blur()">部员列表</a>
-        <!-- <a href="manager/employeeModify.jsp" target="mainFrame" onFocus="this.blur()">部员信息查询、修改</a> -->
-        <a href="manager/employeeAdd.jsp" target="mainFrame" onFocus="this.blur()">添加部员</a>
+        <a href="boss/employeeInfoList.jsp" target="mainFrame" onFocus="this.blur()">员工列表</a><!-- 根据eid、姓名从全公司搜索，还可将别人level设置为部门经理哦！-->
+        <a href="boss/employeeAdd.jsp" target="mainFrame" onFocus="this.blur()">添加部员</a><!-- 除普通员工之外，还尅添加部门经理哦！ -->
       </div>
       <div>
         <span>下属考勤</span>
-        <a href="manager/attendanceRecordList.jsp" target="mainFrame" onFocus="this.blur()">签到记录查询</a>
-        <a href="manager/attendanceSetDaily.jsp" target="mainFrame" onFocus="this.blur()">生成日考勤表</a>
-        <a href="manager/attendanceList.jsp" target="mainFrame" onFocus="this.blur()">考勤表查询</a>
-        <a href="manager/attendanceCountMonthly.jsp" target="mainFrame" onFocus="this.blur()">月考勤统计表查询</a>
+        <a href="boss/attendanceSetDaily.jsp" target="mainFrame" onFocus="this.blur()">批免部门经理日考勤表</a>
+        <a href="boss/attendanceRecordList.jsp" target="mainFrame" onFocus="this.blur()">签到记录查询</a><!-- 根据eid、姓名从全公司搜索-->
+        <a href="boss/attendanceList.jsp" target="mainFrame" onFocus="this.blur()">考勤表查询</a><!-- 根据eid、姓名从全公司搜索-->
+        <a href="boss/attendanceCountMonthly.jsp" target="mainFrame" onFocus="this.blur()">月考勤统计表查询</a><!-- 根据eid、姓名从全公司搜索-->
       </div>
       <div>
         <span>下属工资</span>
-        <a href="manager/salarySet.jsp" target="mainFrame" onFocus="this.blur()">设置当月奖金及工资</a>
-        <a href="manager/salaryList.jsp" target="mainFrame" onFocus="this.blur()">部员工资查询</a>
+        <a href="boss/salarySet.jsp" target="mainFrame" onFocus="this.blur()">设置部门经理当月奖金</a>
+        <a href="boss/salaryList.jsp" target="mainFrame" onFocus="this.blur()">工资查询</a><!-- 根据eid、姓名从全公司搜索-->
       </div>
     </div>
 </body>

@@ -94,4 +94,5 @@ String month=date.substring(5,7);
   </tr> -->
 </table>
 </body>
+<script>window.onload=getRecordList()</script>
 </html>

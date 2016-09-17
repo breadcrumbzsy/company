@@ -49,7 +49,7 @@ public class RecordServlet extends HttpServlet {
 		int result=rs.sign(eid);
 		System.out.println("lastType"+lastType);
 		JSONObject json=new JSONObject();
-		if(result==1&&lastType==0){
+		if(result==1&&lastType>3){
 			json.put("msg", "签退成功");
 		}else if(result==1&&lastType==1){
 			json.put("msg", "签到成功");

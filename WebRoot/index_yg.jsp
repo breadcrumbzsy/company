@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>网站后台管理系统</title>
+<title>人力资源管理系统</title>
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link href="css/css.css" type="text/css" rel="stylesheet" />
 </head>

@@ -187,6 +187,32 @@
     <servlet-name>AttendanceListByEid</servlet-name>
     <servlet-class>servlet.AttendanceListByEid</servlet-class>
   </servlet>
+  
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceRecordListByDayB</servlet-name>
+    <servlet-class>servlet.AttendanceRecordListByDayB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceRecordListByEidB</servlet-name>
+    <servlet-class>servlet.AttendanceRecordListByEidB</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceListByDayB</servlet-name>
+    <servlet-class>servlet.AttendanceListByDayB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceListByEidB</servlet-name>
+    <servlet-class>servlet.AttendanceListByEidB</servlet-class>
+  </servlet>
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -217,6 +243,69 @@
     <servlet-name>EmployeeLogout</servlet-name>
     <servlet-class>servlet.EmployeeLogout</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeListB</servlet-name>
+    <servlet-class>servlet.EmployeeListB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeInfoByEidB</servlet-name>
+    <servlet-class>servlet.EmployeeInfoByEidB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmployeeInfoByNameB</servlet-name>
+    <servlet-class>servlet.EmployeeInfoByNameB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceShowDeptMngB</servlet-name>
+    <servlet-class>servlet.AttendanceShowDeptMngB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceCountMonthlyB</servlet-name>
+    <servlet-class>servlet.AttendanceCountMonthlyB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListByEidB</servlet-name>
+    <servlet-class>servlet.SalaryListByEidB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListByMonthB</servlet-name>
+    <servlet-class>servlet.SalaryListByMonthB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SalaryListUnsetB</servlet-name>
+    <servlet-class>servlet.SalaryListUnsetB</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AttendanceAddB</servlet-name>
+    <servlet-class>servlet.AttendanceAddB</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -377,6 +466,24 @@
     <servlet-name>AttendanceListByEid</servlet-name>
     <url-pattern>/servlet/AttendanceListByEid</url-pattern>
   </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>AttendanceRecordListByDayB</servlet-name>
+    <url-pattern>/servlet/AttendanceRecordListByDayB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceRecordListByEidB</servlet-name>
+    <url-pattern>/servlet/AttendanceRecordListByEidB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceListByDayB</servlet-name>
+    <url-pattern>/servlet/AttendanceListByDayB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceListByEidB</servlet-name>
+    <url-pattern>/servlet/AttendanceListByEidB</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>AttendanceCountMonthly</servlet-name>
     <url-pattern>/servlet/AttendanceCountMonthly</url-pattern>
@@ -396,6 +503,42 @@
   <servlet-mapping>
     <servlet-name>EmployeeLogout</servlet-name>
     <url-pattern>/servlet/EmployeeLogout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeListB</servlet-name>
+    <url-pattern>/servlet/EmployeeListB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeInfoByEidB</servlet-name>
+    <url-pattern>/servlet/EmployeeInfoByEidB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeInfoByNameB</servlet-name>
+    <url-pattern>/servlet/EmployeeInfoByNameB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceShowDeptMngB</servlet-name>
+    <url-pattern>/servlet/AttendanceShowDeptMngB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceCountMonthlyB</servlet-name>
+    <url-pattern>/servlet/AttendanceCountMonthlyB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListByEidB</servlet-name>
+    <url-pattern>/servlet/SalaryListByEidB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListByMonthB</servlet-name>
+    <url-pattern>/servlet/SalaryListByMonthB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SalaryListUnsetB</servlet-name>
+    <url-pattern>/servlet/SalaryListUnsetB</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AttendanceAddB</servlet-name>
+    <url-pattern>/servlet/AttendanceAddB</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

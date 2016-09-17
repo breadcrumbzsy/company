@@ -187,6 +187,19 @@ public class EmployeeDao {
 			throw new RuntimeException(e);
 		}
 	}
+	public List<Employee> findByBoss() {
+		try {
+			String sql = "select * from employee  order by isQuit";//order by isQuit
+			List<Employee> list = (List<Employee>) this.qr.query(sql,
+					new BeanListHandler<Employee>(Employee.class));
+			//List<Employee> employeeList = new ArrayList<Employee>();
+			return list;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	
 	public int quit(int eid) {
 		try {
@@ -226,6 +239,20 @@ public class EmployeeDao {
 				System.out.println("find by eid:" + employee);
 			}
 			return employee;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<Employee> findDeptMng() {
+		try {
+			String sql = "select * from employee where level='部门经理' ";//order by isQuit
+			List<Employee> list = (List<Employee>) this.qr.query(sql,
+					new BeanListHandler<Employee>(Employee.class));
+			//List<Employee> employeeList = new ArrayList<Employee>();
+			return list;
 		} catch (SQLException e) {
 			System.out.println("wrong");
 			e.printStackTrace();

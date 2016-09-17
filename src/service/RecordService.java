@@ -13,8 +13,8 @@ public class RecordService {
 	
 	public int sign(int eid){
 		int lastType=rd.findLastType(eid);
-		if(lastType==0){
-			return rd.setOutTime(eid);
+		if(lastType>3){
+			return rd.setOutTime(lastType);
 		}else if(lastType==1){
 			return rd.addRecord(eid);
 		}else{
@@ -27,13 +27,17 @@ public class RecordService {
 	}
 	
 	public List<Record> findByEid(int eid,String department){
-		
 		return rd.findByEid(eid,department);
 	}
-	
+	public List<Record> findByEidBoss(int eid){
+		return rd.findByEidBoss(eid);
+	}
 	
 	public List<Record> findByDay(Date day,String department){
 		return rd.findByDay(day,department);
+	}
+	public List<Record> findByDayBoss(Date day){
+		return rd.findByDayBoss(day);
 	}
 
 	public List<Record> findByEidAndMonth(int eid, int year, int month) {

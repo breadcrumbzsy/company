@@ -72,7 +72,19 @@ public class SalaryDao {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	public List<Salary> findByMonthBoss(int year,int month) {
+		try {
+			String sql = "select * from salary,employee where salary.eid=employee.eid and salary.year_=? and salary.month_=? ";
+			List<Salary> salaryList = (List<Salary>) this.qr.query(sql, new BeanListHandler<Salary>(
+					Salary.class), new Object[] {year,month});
+			System.out.println("salaryList:"+salaryList);
+			return salaryList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	
 	public List<Salary> findByEid(String department,int eid) {
 		try {
@@ -87,5 +99,17 @@ public class SalaryDao {
 			throw new RuntimeException(e);
 		}
 	}
-
+	public List<Salary> findByEidBoss(int eid) {
+		try {
+			String sql = "select * from salary,employee where salary.eid=employee.eid and employee.eid=? ";
+			List<Salary> salaryList = (List<Salary>) this.qr.query(sql, new BeanListHandler<Salary>(
+					Salary.class), new Object[] {eid});
+			System.out.println("salaryList:"+salaryList);
+			return salaryList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }

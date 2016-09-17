@@ -105,7 +105,7 @@ pageContext.setAttribute("department", request.getParameter("department"));
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">等级：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-          <input type="text" name="" value="" class="text-word" id="level">
+          <input type="text" name="" value="" class="text-word" id="level">“组长”、“普通员工”或“试用员工”
         </td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -116,7 +116,7 @@ pageContext.setAttribute("department", request.getParameter("department"));
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">是否在职：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-          <input type="text" name="" value="" class="text-word" id="shifouzaizhi">
+          <input type="text" name="" value="" class="text-word" id="shifouzaizhi">“是”或“否”
         </td>
       </tr>
       

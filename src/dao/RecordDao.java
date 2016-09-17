@@ -12,7 +12,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
-import domain.Attendance;
 import domain.Record;
 
 public class RecordDao {
@@ -45,12 +44,38 @@ public class RecordDao {
 			throw new RuntimeException(e);
 		}
 	}
+	public List<Record> findByEidBoss(int eid) {
+		try {
+			//还要修改
+			String sql = "select * from record ,employee  where record.eid=employee.eid and employee.eid=? order by inTime";
+			List<Record> recordList = (List<Record>) this.qr.query(sql, new BeanListHandler<Record>(
+					Record.class), new Object[] {eid});
+			return recordList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	public List<Record> findByDay(Date day,String department) {
 		try {
 			//还要修改
 			String sql = "select * from record ,employee  where record.eid=employee.eid and record.day=? and department=? order by inTime";
 			List<Record> recordList = (List<Record>) this.qr.query(sql, new BeanListHandler<Record>(
 					Record.class), new Object[] {day,department});
+			return recordList;
+		} catch (SQLException e) {
+			System.out.println("wrong");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public List<Record> findByDayBoss(Date day) {
+		try {
+			//还要修改
+			String sql = "select * from record ,employee  where record.eid=employee.eid and record.day=? order by inTime";
+			List<Record> recordList = (List<Record>) this.qr.query(sql, new BeanListHandler<Record>(
+					Record.class), new Object[] {day});
 			return recordList;
 		} catch (SQLException e) {
 			System.out.println("wrong");
@@ -79,15 +104,19 @@ public class RecordDao {
 	public int findLastType(int eid) {
 		//0表示签到，1表示签退，2表示系统错误
 		try {
-			String sql = "select * from record where eid =? order by inTime DESC";
-			List<Record> list = qr.query(sql, new BeanListHandler(Record.class), eid);
+			long now = System.currentTimeMillis();
+			Date CurrTime = new Date(now);
+			SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+			String day = dateformat.format(CurrTime);
+			String sql = "select * from record where eid =? and day=? order by inTime desc";
+			List<Record> list = qr.query(sql, new BeanListHandler(Record.class), new Object[] {eid,day});
 			if(list==null||list.size()==0){
 				return 1;
 			}else{
 				Time outTime=list.get(0).getOutTime();
 				System.out.println("outtime:"+outTime);
 				if(outTime==null)
-					return 0;
+					return list.get(0).getRid();
 				else
 					return 1;
 			}
@@ -121,13 +150,13 @@ public class RecordDao {
 		}
 	}
 	
-	public int setOutTime(int eid){
+	public int setOutTime(int rid){
 		try {
 			Timestamp outTime = new Timestamp(System.currentTimeMillis());
 			System.out.println("time:"+outTime.toString());
 
-			String sql = "update record set outTime=? where eid=?";
-			this.qr.update(sql, new Object[] { outTime,eid });
+			String sql = "update record set outTime=? where rid=?";
+			this.qr.update(sql, new Object[] { outTime,rid });
 			System.out.println("ok");
 			return 1;
 		} catch (SQLException e) {

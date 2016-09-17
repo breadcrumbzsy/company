@@ -62,9 +62,28 @@ public class SalaryService {
 	public List<Salary> findByEid(String department,int eid) {
 		return sd.findByEid(department, eid);
 	}
+	public List<Salary> findByMonthBoss(int year,int month) {
+		return sd.findByMonthBoss( year, month);
+	}
+	public List<Salary> findByEidBoss(int eid) {
+		return sd.findByEidBoss( eid);
+	}
 	
 	public List<Employee> findSalaryUnset(String department,int year,int month) {
 		List<Employee> employeeList=ed.findByDepartment(department);
+		List<Employee> list=new ArrayList<Employee>();
+		for(int i=0;i<employeeList.size();i++){
+			Employee employee=employeeList.get(i);
+			List<Salary> salaries =sd.findByEidAndMonth(employee.getEid(), year, month);
+			if(salaries.size()==0||salaries==null){
+				list.add(employee);
+			}
+		}
+		return list;
+	}
+	
+	public List<Employee> findSalaryUnsetBoss(int year,int month) {
+		List<Employee> employeeList=ed.findDeptMng();
 		List<Employee> list=new ArrayList<Employee>();
 		for(int i=0;i<employeeList.size();i++){
 			Employee employee=employeeList.get(i);

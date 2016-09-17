@@ -107,4 +107,5 @@ String month=date.substring(5,7);
   </tr> -->
 </table>
 </body>
+<script>window.onload=getUnsetList('${sessionScope.employee.getDepartment() }')</script>
 </html>

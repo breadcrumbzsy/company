@@ -67,4 +67,10 @@ public class EmployeeService {
 	public int quit(int eid){
 		return ed.quit(eid);
 	}
+	
+	//=========================================
+	public List<Employee> findByBoss() {
+		return ed.findByBoss();
+	}
+	
 }

@@ -87,4 +87,5 @@ String month=date.substring(5,7);
   </tr> -->
 </table>
 </body>
+<script>window.onload=getAttendanceCountMonthly('${sessionScope.employee.getDepartment() }')</script>
 </html>

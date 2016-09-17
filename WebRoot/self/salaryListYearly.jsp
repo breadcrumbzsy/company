@@ -104,5 +104,5 @@ String month=date.substring(5,7);
   </tr> -->
 </table>
 </body>
-<script>window.onload=getList()</script>
+<script>window.onload=getSalaryList()</script>
 </html>

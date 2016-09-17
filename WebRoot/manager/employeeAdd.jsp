@@ -103,16 +103,16 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         <input type="text" name="" value="" class="text-word" id="tel">
         </td>
       </tr>
-       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">入职时间：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <input type="text" name="" value="" class="text-word" id="enrollTime">
+        <input type="text" name="" value="" class="text-word" id="enrollTime">格式为：yyyy-mm-dd
         </td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">等级：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-          <input type="text" name="" value="" class="text-word" id="level">
+          <input type="text" name="" value="" class="text-word" id="level">“组长”、“普通员工”或“试用员工”
         </td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -123,7 +123,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">初始密码：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-          <input type="text" name="" value="" class="text-word" id="password">
+          <input type="text" name="" value="" class="text-word" id="password">员工8位生日：yyyymmdd
         </td>
       </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

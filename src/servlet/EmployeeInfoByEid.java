@@ -80,7 +80,7 @@ public class EmployeeInfoByEid extends HttpServlet {
 				trainingArray.add(obj);
 			}
 			
-			if(employee.getDepartment().equals(department)){
+			if(employee.getDepartment().equals(department)||department.equals("董事会")){
 				json.put("eid", employee.getEid());
 				json.put("name", employee.getName());
 				json.put("gender", employee.getGender());

@@ -114,4 +114,5 @@ String date= format.format(new Date());
   </tr> -->
 </table>
 </body>
+<!-- <script>window.onload=attendanceSetDaily('${sessionScope.employee.getDepartment() }')</script> -->
 </html>

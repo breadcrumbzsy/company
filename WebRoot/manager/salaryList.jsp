@@ -118,4 +118,5 @@ String month=date.substring(5,7);
   </tr> -->
 </table>
 </body>
+<script>window.onload=getSalaryListByMonth('${sessionScope.employee.getDepartment() }')</script>
 </html>
