@@ -1,16 +1,21 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import service.RecordService;
+import service.SalaryService;
+import domain.Employee;
+import domain.Salary;
 
-public class RecordServlet extends HttpServlet {
+public class SalaryListByMonthB extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -24,6 +29,7 @@ public class RecordServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doPost(request, response);
 	}
 
@@ -39,28 +45,38 @@ public class RecordServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		int eid=Integer.valueOf(request.getParameter("eid"));
 		
-//		判断签到请求的IP来源是否在公司
-//		String userHost=request.getHeader("HOST");
-//		String companyHost="";
-//		if(userHost.equals(companyHost)){}
-	
-		RecordService rs=new RecordService();
-		int lastType=rs.findLastType(eid);
-		int result=rs.sign(eid);
-		System.out.println("lastType"+lastType);
-		JSONObject json=new JSONObject();
-		if(result==1&&lastType>3){
-			json.put("msg", "签退成功");
-		}else if(result==1&&lastType==1){
-			json.put("msg", "签到成功");
-		}else{
-			json.put("msg", "系统错误，请重试！");
+		SalaryService ss=new SalaryService();
+		
+		int year=Integer.valueOf(request.getParameter("year"));
+		int month=Integer.valueOf(request.getParameter("month"));
+		
+		
+		JSONArray array = new JSONArray();
+		List<Salary> list = ss.findByMonthBoss(year, month);
+		for (int i = 0; i < list.size(); i++) {
+			Salary salary = list.get(i);
+			
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(salary.getEid()!=1000){
+				JSONObject obj = new JSONObject();
+				obj.put("sid", salary.getSid());
+				obj.put("eid", salary.getEid());
+				obj.put("name", salary.getName());
+				obj.put("year", salary.getYear_());
+				obj.put("month", salary.getMonth_());
+				obj.put("basic", salary.getBasic());
+				obj.put("bonus", salary.getBonus());
+				obj.put("penalty", salary.getPenalty());
+				obj.put("total", salary.getTotal());
+				array.add(obj);
+			}
+		
 		}
+		JSONObject json = new JSONObject();
+		json.put("array", array);
 		System.out.println(json.toString());
 		response.getWriter().write(json.toString());
 	}

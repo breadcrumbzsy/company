@@ -1,16 +1,24 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import service.AttendanceService;
 import service.RecordService;
+import domain.Attendance;
+import domain.Employee;
+import domain.Record;
 
-public class RecordServlet extends HttpServlet {
+public class AttendanceListByEidB extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -39,28 +47,49 @@ public class RecordServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		
+		AttendanceService as=new AttendanceService();
+		
 		int eid=Integer.valueOf(request.getParameter("eid"));
 		
-//		判断签到请求的IP来源是否在公司
-//		String userHost=request.getHeader("HOST");
-//		String companyHost="";
-//		if(userHost.equals(companyHost)){}
-	
-		RecordService rs=new RecordService();
-		int lastType=rs.findLastType(eid);
-		int result=rs.sign(eid);
-		System.out.println("lastType"+lastType);
-		JSONObject json=new JSONObject();
-		if(result==1&&lastType>3){
-			json.put("msg", "签退成功");
-		}else if(result==1&&lastType==1){
-			json.put("msg", "签到成功");
-		}else{
-			json.put("msg", "系统错误，请重试！");
+		JSONArray array = new JSONArray();
+		List<Attendance> list=as.findByEidBoss(eid);
+		for (int i = 0; i < list.size(); i++) {
+			Attendance a = list.get(i);
+
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(a.getEid()!=1000){
+				JSONObject obj = new JSONObject();
+				obj.put("aid",a.getAid() );
+				obj.put("eid", a.getEid());
+				obj.put("name", a.getName());
+				obj.put("day", a.getDay().toString());
+//				obj.put("isLate", a.getIsLate());
+//				obj.put("isAbsent", a.getIsAbsent());
+//				obj.put("isAllowed", a.getIsAllowed());
+				if( a.getIsLate()==1)
+					obj.put("isLate","是");
+				else
+					obj.put("isLate","否");
+				if(a.getIsAbsent()==1)
+					obj.put("isAbsent","是");
+				else
+					obj.put("isAbsent","否");
+				if(a.getIsAllowed()==1)
+					obj.put("isAllowed","是");
+				else
+					obj.put("isAllowed","否");
+				obj.put("penalty", a.getPenalty());
+				
+				array.add(obj);
+				
+			}
+
 		}
+		JSONObject json = new JSONObject();
+		json.put("array", array);
 		System.out.println(json.toString());
 		response.getWriter().write(json.toString());
 	}

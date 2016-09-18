@@ -1,16 +1,20 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import service.RecordService;
+import service.EmployeeService;
+import domain.Employee;
 
-public class RecordServlet extends HttpServlet {
+public class EmployeeInfoByNameB extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -39,28 +43,40 @@ public class RecordServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		int eid=Integer.valueOf(request.getParameter("eid"));
 		
-//		判断签到请求的IP来源是否在公司
-//		String userHost=request.getHeader("HOST");
-//		String companyHost="";
-//		if(userHost.equals(companyHost)){}
-	
-		RecordService rs=new RecordService();
-		int lastType=rs.findLastType(eid);
-		int result=rs.sign(eid);
-		System.out.println("lastType"+lastType);
-		JSONObject json=new JSONObject();
-		if(result==1&&lastType>3){
-			json.put("msg", "签退成功");
-		}else if(result==1&&lastType==1){
-			json.put("msg", "签到成功");
-		}else{
-			json.put("msg", "系统错误，请重试！");
+		EmployeeService es=new EmployeeService();
+		String name=request.getParameter("name");
+		//String department=request.getParameter("department");
+		
+		
+		JSONArray array = new JSONArray();
+		List<Employee> list = es.findByName(name);
+		for (int i = 0; i< list.size(); i++) {
+			Employee employee = list.get(i);
+			
+			if(employee.getEid()!=1000){
+				
+				JSONObject obj = new JSONObject();
+				obj.put("eid", employee.getEid());
+				obj.put("name", employee.getName());
+				obj.put("gender", employee.getGender());
+				obj.put("email", employee.getEmail());
+				obj.put("tel", employee.getTel());
+				obj.put("enrollTime", employee.getEnrollTime().toString());
+				obj.put("level", employee.getLevel());
+				obj.put("department", employee.getDepartment());
+				if(employee.getIsQuit()==0){
+					obj.put("shifouzaizhi", "是");
+				}else{
+					obj.put("shifouzaizhi", "否");
+				}
+				array.add(obj);
+			}
 		}
+		JSONObject json = new JSONObject();
+		json.put("array", array);
 		System.out.println(json.toString());
 		response.getWriter().write(json.toString());
 	}

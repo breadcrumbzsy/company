@@ -50,11 +50,10 @@ div.main-order{ line-height:30px; padding:10px 0 0 0;}
 程序编码：UTF-8<br/>
     </div>  -->
       <div class="main-con">
-服务器软件：Apache/2.2.6 (Win32) PHP/5.2.5<br/>
-JSP版本：5.2.5<br/>
-MYSQL版本：5.0.45-community-nt<br/>
-建议浏览器：谷歌<br/>
-使用域名：192.168.1.124 <br/>
+服务器：Apache Tomcat/7.0.64<br/>
+MYSQL版本：5.1.73-log<br/>
+建议浏览器：谷歌浏览器<br/>
+HOST：115.28.33.47:8080 <br/>
     </div>
     </td>
     <td align="left" valign="top" width="49%">

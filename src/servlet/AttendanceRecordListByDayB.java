@@ -1,16 +1,22 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import service.RecordService;
+import domain.Employee;
+import domain.Record;
 
-public class RecordServlet extends HttpServlet {
+public class AttendanceRecordListByDayB extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -39,30 +45,42 @@ public class RecordServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		int eid=Integer.valueOf(request.getParameter("eid"));
 		
-//		判断签到请求的IP来源是否在公司
-//		String userHost=request.getHeader("HOST");
-//		String companyHost="";
-//		if(userHost.equals(companyHost)){}
-	
 		RecordService rs=new RecordService();
-		int lastType=rs.findLastType(eid);
-		int result=rs.sign(eid);
-		System.out.println("lastType"+lastType);
-		JSONObject json=new JSONObject();
-		if(result==1&&lastType>3){
-			json.put("msg", "签退成功");
-		}else if(result==1&&lastType==1){
-			json.put("msg", "签到成功");
-		}else{
-			json.put("msg", "系统错误，请重试！");
+		
+		Date day=Date.valueOf(request.getParameter("day"));
+		
+		System.out.println("day:"+day);
+		JSONArray array = new JSONArray();
+		List<Record> list=rs.findByDayBoss(day);
+		for (int i = 0; i < list.size(); i++) {
+			Record record = list.get(i);
+			
+			Employee bmjl=(Employee) request.getSession().getAttribute("employee");
+			if(record.getEid()!=1000){
+				JSONObject obj = new JSONObject();
+				obj.put("rid", record.getRid());
+				obj.put("eid", record.getEid());
+				obj.put("name", record.getName());
+				obj.put("day", record.getDay().toString());
+				obj.put("inTime", record.getInTime().toString());
+				if(record.getOutTime()!=null)
+					obj.put("outTime", record.getOutTime().toString());
+				else {
+					obj.put("outTime", null);
+				}
+				
+				array.add(obj);
+			}
+			
 		}
+		JSONObject json = new JSONObject();
+		json.put("array", array);
 		System.out.println(json.toString());
 		response.getWriter().write(json.toString());
 	}
+
 
 }

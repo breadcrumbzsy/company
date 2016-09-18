@@ -1,16 +1,22 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import service.RecordService;
+import service.AttendanceService;
+import domain.Attendance;
+import domain.AttendanceCount;
+import domain.Employee;
 
-public class RecordServlet extends HttpServlet {
+public class AttendanceCountMonthlyB extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -42,25 +48,36 @@ public class RecordServlet extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		int eid=Integer.valueOf(request.getParameter("eid"));
 		
-//		判断签到请求的IP来源是否在公司
-//		String userHost=request.getHeader("HOST");
-//		String companyHost="";
-//		if(userHost.equals(companyHost)){}
+		AttendanceService as=new AttendanceService();
+
+		int year=Integer.valueOf(request.getParameter("year"));
+		int month=Integer.valueOf(request.getParameter("month"));
+		
+		JSONArray array = new JSONArray();
+		List<AttendanceCount> list = as.getAttendanceCountMonthlyBoss(year, month);
+		for (int i = 0; i < list.size(); i++) {
+			AttendanceCount attendanceCount = list.get(i);
+			
+			if(attendanceCount.getEid()!=1000){
+				
+				JSONObject obj = new JSONObject();
+				
+				obj.put("eid", attendanceCount.getEid());
+				obj.put("name", attendanceCount.getName());
+				obj.put("year", attendanceCount.getYear());
+				obj.put("month", attendanceCount.getMonth());
+				obj.put("countLate", attendanceCount.getCountLate());
+				obj.put("countAbsent", attendanceCount.getCountAbsent());
+				obj.put("penalty", attendanceCount.getPenalty());
+				
+				array.add(obj);
+			}
 	
-		RecordService rs=new RecordService();
-		int lastType=rs.findLastType(eid);
-		int result=rs.sign(eid);
-		System.out.println("lastType"+lastType);
-		JSONObject json=new JSONObject();
-		if(result==1&&lastType>3){
-			json.put("msg", "签退成功");
-		}else if(result==1&&lastType==1){
-			json.put("msg", "签到成功");
-		}else{
-			json.put("msg", "系统错误，请重试！");
+
 		}
+		JSONObject json = new JSONObject();
+		json.put("array", array);
 		System.out.println(json.toString());
 		response.getWriter().write(json.toString());
 	}
