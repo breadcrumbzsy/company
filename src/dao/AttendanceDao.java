@@ -46,23 +46,28 @@ public class AttendanceDao {
 				if(recordList.size()==0){
 					isAbsent=1;
 					isLate=0;	
-					penalty=200;//缺勤罚款200
+					penalty=200;
+					//缺勤罚款200
 				}else if(Integer.valueOf(recordList.get(0).getInTime().toString().substring(0, 2))>=10){
 					isAbsent=1;
 					isLate=1;
-					penalty=200;//迟到2h以上算成缺勤罚款200
+					penalty=200;
+					//迟到2h以上算成缺勤罚款200
 				}else if(isTimeLongEnough(recordList)==false){
 					isAbsent=1;
 					isLate=0;
-					penalty=200;//就算没有迟到2h以上，不足6小时算成缺勤罚款200
+					penalty=200;
+					//就算没有迟到2h以上，不足6小时算成缺勤罚款200
 				}else if(Integer.valueOf(recordList.get(0).getInTime().toString().substring(0, 2))>=8){
 					isAbsent=0;
 					isLate=1;
-					penalty=50;//迟到罚款50
+					penalty=50;
+					//迟到罚款50
 				}else{
 					isAbsent=0;
 					isLate=0;
-					penalty=0;//wu 
+					penalty=0;
+					//wu 
 				}
 				System.out.println("isAbsent:"+isAbsent);
 				System.out.println("isLate:"+isLate);
